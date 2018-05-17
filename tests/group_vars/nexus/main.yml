@@ -1,0 +1,49 @@
+---
+
+## JAVA
+java_implementation: openjdk
+java_open_jdk_version: 8
+java_open_jdk_set_version: 8
+
+## NEXUS
+nexus_version: 3.11.0-01
+nexus_host: 0.0.0.0
+nexus_port: 8081
+nexus_docker_enable: true
+nexus_npm_enable: true
+nexus_nuget_enable: true
+nexus_pypi_enable: true
+nexus_blobstores_split: true
+
+nexus_admin_password: nexus
+
+nexus_roles:
+  - id: Developer
+    name: developer
+    description: All developers
+    privileges:
+      - nx-search-read
+    roles: []
+  - id: Deployer
+    name: deployer
+    description: All deployers
+    privileges:
+      - nx-repository-admin-*-*-*
+    roles:
+      - Developer
+
+nexus_users:
+  - username: jenkins
+    first_name: Jenkins
+    last_name: CI
+    email: support@company.com
+    password: s3cr3t
+    roles:
+      - Deployer
+
+nexus_scheduled_tasks:
+  - name: compact-blobstore
+    cron: '0 0 22 * * ?'
+    typeId: blobstore.compact
+    taskProperties:
+      blobstoreName: blob-mvn

@@ -1,0 +1,34 @@
+---
+
+- name: NEXUS | Include maven default vars
+  include_vars: maven.yml
+
+- name: NEXUS | Create maven proxy repository
+  include_tasks: ../../script/run_script.yml
+  with_items:
+    - "{{ item.proxy }}"
+  loop_control:
+    loop_var: proxy
+  vars:
+    script_name: maven_create_proxy_repository
+    args: "{{ nexus_repositories_maven_default | combine(proxy) }}"
+
+- name: NEXUS | Create maven hosted repository
+  include_tasks: ../../script/run_script.yml
+  with_items:
+    - "{{ item.hosted }}"
+  loop_control:
+    loop_var: hosted
+  vars:
+    script_name: maven_create_hosted_repository
+    args: "{{ nexus_repositories_maven_default | combine(hosted) }}"
+
+- name: NEXUS | Create maven group repository
+  include_tasks: ../../script/run_script.yml
+  with_items:
+    - "{{ item.group }}"
+  loop_control:
+    loop_var: group
+  vars:
+    script_name: maven_create_group_repository
+    args: "{{ nexus_repositories_maven_default | combine(group) }}"

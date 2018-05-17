@@ -1,0 +1,121 @@
+---
+
+- name: NEXUS | Declare scripts
+  include_tasks: script/declare_script.yml
+  with_items:
+    - security/admin_password
+    - security/anonymous
+    - security/ldap
+    - security/role
+    - security/user
+    - system/capability
+    - system/task
+    - delete_blobstore
+    - create_blobstore
+    - delete_repository
+    - maven/create_proxy_repository
+    - maven/create_hosted_repository
+    - maven/create_group_repository
+    - docker/create_proxy_repository
+    - docker/create_hosted_repository
+    - docker/create_group_repository
+    - npm/create_proxy_repository
+    - npm/create_hosted_repository
+    - npm/create_group_repository
+    - nuget/create_proxy_repository
+    - nuget/create_hosted_repository
+    - nuget/create_group_repository
+    - pypi/create_proxy_repository
+    - pypi/create_hosted_repository
+    - pypi/create_group_repository
+
+- name: NEXUS | Security -> Admin Password
+  import_tasks: action/security/admin_password.yml
+
+- name: NEXUS | Security -> Anonymous Access
+  import_tasks: action/security/anonymous.yml
+
+- name: NEXUS | Security -> LDAP
+  import_tasks: action/security/ldap.yml
+  when: nexus_ldap_authentication
+
+- name: NEXUS | Security -> Roles
+  include_tasks: action/security/role.yml
+  with_items:
+    - "{{ nexus_roles }}"
+
+- name: NEXUS | Security -> Users
+  include_tasks: action/security/user.yml
+  with_items:
+    - "{{ nexus_users }}"
+
+- name: NEXUS | System -> Capabilities
+  import_tasks: action/system/capability.yml
+
+- name: NEXUS | System -> Tasks
+  include_tasks: action/system/task.yml
+  with_items:
+    - "{{ nexus_scheduled_tasks }}"
+
+- name: NEXUS | Delete default repositories
+  include_tasks: action/delete_repository.yml
+  with_items:
+    - "{{ nexus_default_repositories }}"
+  when:
+    - nexus_check|failed
+    - nexus_delete_default_repositories
+
+- name: NEXUS | Delete default blobstore
+  include_tasks: action/delete_blobstore.yml
+  with_items:
+    - default
+  when:
+    - nexus_check|failed
+    - nexus_delete_default_blobstore
+
+- block:
+  - name: NEXUS | blobStore -> Include blobStore default vars
+    include_vars: blobstore.yml
+
+  - name: NEXUS | blobStore -> create blobstores
+    include_tasks: action/create_blobstore.yml
+    with_items:
+      - "{{ nexus_blobstores }}"
+  when: nexus_blobstores_split
+
+- name: NEXUS | blobStore -> create default blobstore
+  include_tasks: action/create_blobstore.yml
+  with_items:
+    - name: "default"
+      path: "{{ nexus_data_path }}/blobs/default"
+  when: not nexus_blobstores_split
+
+- name: NEXUS | Maven -> create repositories
+  include_tasks: action/maven/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_maven }}"
+  when: nexus_maven_enable
+
+- name: NEXUS | Docker -> create repositories
+  include_tasks: action/docker/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_docker }}"
+  when: nexus_docker_enable
+
+- name: NEXUS | NPM -> create repositories
+  include_tasks: action/npm/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_npm }}"
+  when: nexus_npm_enable
+
+- name: NEXUS | NUGET -> create repositories
+  include_tasks: action/nuget/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_nuget }}"
+  when: nexus_npm_enable
+
+- name: NEXUS | PYPI -> create repositories
+  include_tasks: action/pypi/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_pypi }}"
+  when: nexus_npm_enable

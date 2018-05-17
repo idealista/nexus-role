@@ -1,0 +1,8 @@
+---
+
+- name: NEXUS | Anonymous access
+  import_tasks: ../../script/run_script.yml
+  vars:
+    script_name: security_anonymous
+    args:
+      anonymous_access: "{{ nexus_anonymous_access }}"

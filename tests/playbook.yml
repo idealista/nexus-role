@@ -1,0 +1,13 @@
+---
+
+- hosts: nexus
+  pre_tasks:
+    - name: NEXUS | Installing test dependencies
+      apt:
+        pkg: "{{ item }}"
+        state: present
+      with_items:
+        - net-tools
+  roles:
+    - java
+    - nexus-role

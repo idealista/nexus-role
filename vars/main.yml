@@ -1,0 +1,17 @@
+---
+nexus_required_libs:
+  - unzip
+
+nexus_mirror: https://download.sonatype.com/nexus/3
+nexus_package_name: "{{ (nexus_version == 'latest') | ternary('', 'nexus-') }}{{ nexus_version }}-unix"
+nexus_package: "{{ nexus_package_name }}.tar.gz"
+nexus_sources_url: "{{ nexus_mirror }}/{{ nexus_package }}"
+
+nexus_default_repositories:
+  - maven-central
+  - maven-public
+  - maven-releases
+  - maven-snapshots
+  - nuget-group
+  - nuget-hosted
+  - nuget.org-proxy

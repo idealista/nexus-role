@@ -1,0 +1,68 @@
+group:
+  {{ nexus_group }}:
+    exists: true
+
+user:
+  {{ nexus_user }}:
+    exists: true
+    groups:
+      - {{ nexus_group }}
+
+file:
+  {{ nexus_data_path }}:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+    filetype: directory
+  {{ nexus_installation_path }}:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+    filetype: directory
+  {{ nexus_log_path }}:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+    filetype: directory
+  {{ nexus_tmp_path }}:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+    filetype: directory
+  /lib/systemd/system/nexus.service:
+    exists: true
+  {{ nexus_data_path }}/blobs/blob-mvn:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+  {{ nexus_data_path }}/blobs/blob-docker:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+  {{ nexus_data_path }}/blobs/blob-npm:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+  {{ nexus_data_path }}/blobs/blob-nuget:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+  {{ nexus_data_path }}/blobs/blob-pypi:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
+
+port:
+  tcp:8081:
+    listening: true
+  tcp:9080:
+    listening: true
+  tcp:9081:
+    listening: true
+  tcp:9082:
+    listening: true
+
+service:
+  nexus:
+    enabled: true
+    running: true

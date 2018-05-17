@@ -1,0 +1,81 @@
+---
+- name: NEXUS | Installing dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ nexus_required_libs }}"
+
+- name: NEXUS | Ensure nexus group
+  group:
+    name: "{{ nexus_group }}"
+    system: yes
+    state: present
+
+- name: NEXUS | Ensure nexus user
+  user:
+    name: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+    system: yes
+    shell: /sbin/nologin
+    createhome: no
+
+- name: NEXUS | Create install path
+  file:
+    dest: "{{ item }}"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ nexus_installation_path }}"
+    - "{{ nexus_log_path }}"
+    - "{{ nexus_data_path }}/etc"
+    - "{{ nexus_tmp_path }}"
+
+- name: NEXUS | Check nexus version
+  slurp:
+    src: "{{ nexus_installation_path }}/VERSION"
+  register: nexus_check
+  changed_when: false
+  ignore_errors: true
+
+- name: NEXUS | Stop service
+  systemd:
+    name: nexus
+    state: stopped
+  when:
+    - nexus_check|success
+    - nexus_force_reinstall or nexus_version == "latest" or nexus_check.content|b64decode != nexus_version
+
+- name: NEXUS | Untar nexus
+  unarchive:
+    extra_opts: ['--strip-components=1']
+    src: "{{ nexus_sources_url }}"
+    remote_src: yes
+    dest: "{{ nexus_installation_path }}"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check|failed or nexus_check.content|b64decode != nexus_version
+
+- name: NEXUS | Fix permissions
+  file:
+    dest: "{{ nexus_installation_path }}"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+    recurse: yes
+  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check|failed or nexus_check.content|b64decode != nexus_version
+
+- name: NEXUS | Set version file
+  copy:
+    content: "{{ nexus_version }}"
+    dest: "{{ nexus_installation_path }}/VERSION"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check|failed or nexus_check.content|b64decode != nexus_version
+
+- name: NEXUS | Copy Daemon script
+  template:
+    src: nexus.service.j2
+    dest: /lib/systemd/system/nexus.service
+    mode: 0644
+  notify: restart nexus

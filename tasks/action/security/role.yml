@@ -1,0 +1,7 @@
+---
+
+- name: NEXUS | Create {{ item.name }} role
+  import_tasks: ../../script/run_script.yml
+  vars:
+    script_name: security_role
+    args: "{{ item }}"

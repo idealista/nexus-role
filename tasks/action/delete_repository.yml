@@ -1,0 +1,8 @@
+---
+
+- name: NEXUS | Delete {{ item }} repository
+  import_tasks: ../script/run_script.yml
+  vars:
+    script_name: delete_repository
+    args:
+      name: "{{ item }}"

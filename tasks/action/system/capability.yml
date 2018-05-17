@@ -1,0 +1,13 @@
+---
+
+- name: NEXUS | Configure branding capability
+  import_tasks: ../../script/run_script.yml
+  vars:
+    script_name: system_capability
+    args:
+      capability_typeId: "rapture.branding"
+      capability_properties:
+        footerHtml: "{{ nexus_capability_branding_footer }}"
+        headerHtml: "{{ nexus_capability_branding_header }}"
+        footerEnabled: "{{ nexus_capability_branding_footer != '' }}"
+        headerEnabled: "{{ nexus_capability_branding_header != '' }}"

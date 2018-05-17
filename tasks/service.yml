@@ -1,0 +1,32 @@
+---
+
+- name: NEXUS | Configuring service
+  systemd:
+    name: nexus
+    state: "{{ nexus_service_state }}"
+    enabled: "{{ nexus_service_enabled }}"
+    daemon_reload: yes
+
+- name: NEXUS | Wait for service listening
+  wait_for:
+    host: "{{ nexus_host }}"
+    port: "{{ nexus_port }}"
+    state: "{{ nexus_service_state }}"
+    delay: 5
+    timeout: 300
+  when:
+    - nexus_service_enabled
+    - nexus_service_state == "started"
+
+- name: NEXUS | Waiting for Nexus service to be ready
+  uri:
+    url: "http://localhost:{{ nexus_port }}{{ nexus_context_path }}"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 10
+  delay: 20
+  when:
+    - nexus_service_enabled
+    - nexus_service_state == "started"
+  changed_when: false

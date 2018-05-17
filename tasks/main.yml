@@ -1,0 +1,21 @@
+---
+
+- name: NEXUS | Install
+  import_tasks: install.yml
+  tags:
+    - install
+
+- name: NEXUS | Configure Service
+  import_tasks: config.yml
+  tags:
+    - configure
+
+- name: NEXUS | Service
+  import_tasks: service.yml
+  tags:
+    - service
+
+- name: NEXUS | Configure Nexus
+  import_tasks: config_nexus.yml
+  tags:
+    - configure_nexus
