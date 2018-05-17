@@ -44,7 +44,7 @@ vagrant:
   raw_config_args:
     - "hostmanager.enabled = true"
     # Enable for debug purpose
-    - "hostmanager.manage_host = true"
+    #- "hostmanager.manage_host = true"
     - "hostmanager.manage_guest = true"
     - "hostmanager.ignore_private_ip = false"
     - "hostmanager.include_offline = true"
@@ -76,7 +76,6 @@ docker:
     - name: nexus.cont
       ansible_groups:
         - nexus
-      dockerfile: tests/Dockerfile
       image: idealista/java-debian-ansible
       image_version: latest
       privileged: True
