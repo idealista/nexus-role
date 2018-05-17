@@ -1,0 +1,202 @@
+---
+# General
+nexus_version: latest # Or: 3.11.0-01, 3.10.0-04, 3.9.0-01, ...
+
+## Owner
+nexus_user: nexus
+nexus_group: nexus
+
+# Service options
+
+## start on boot
+nexus_service_enabled: True
+# current state: started, stopped
+nexus_service_state: started
+
+## Files & Paths
+nexus_installation_path: /opt/nexus
+nexus_log_path: /var/log/nexus
+nexus_data_path: /var/nexus
+nexus_tmp_path: "{{ nexus_data_path }}/tmp"
+
+## Port & host
+nexus_host: localhost
+nexus_port: 8081
+nexus_context_path: /
+
+nexus_java_xms: 2G
+nexus_java_xmx: 2G
+nexus_max_filedescriptors: 65536
+
+# SECURITY
+nexus_admin_password: admin123
+nexus_anonymous_access: true
+
+## LDAP
+## https://books.sonatype.com/nexus-book/3.0/reference/security.html
+nexus_ldap_name: main_ldap
+nexus_ldap_authentication: false
+nexus_ldap_protocol: ldap # ldap | ldaps
+nexus_ldap_host: localhost
+nexus_ldap_port: 10389
+nexus_ldap_dn: uid=admin,ou=system
+nexus_ldap_password: secret
+nexus_ldap_base_dn: ou=basicauth,ou=users,ou=axis,o=abc,c=au
+nexus_ldap_search_base: dc=mycompany,dc=net
+nexus_ldap_filter: (uid={0})
+nexus_ldap_user_object_class: inetOrgPerson # ..., person, user or posixAccount
+nexus_ldap_user_id_attribute: uid
+nexus_ldap_user_real_name_attribute: cn
+nexus_ldap_user_email_attribute: mail
+nexus_ldap_user_subtree: true
+
+## ROLES
+nexus_roles: []
+# example role item
+#  - id: Developer
+#    name: developer
+#    description: All developers
+#    privileges:
+#      - nx-search-read
+#    roles: []
+#  - id: Deployer
+#    name: deployer
+#    description: All deployers
+#    privileges:
+#      - nx-repository-admin-*-*-*
+#    roles:
+#      - Developer
+
+## USERS
+nexus_users: []
+# example user item :
+#  - username: jenkins # used as key to update
+#    first_name: Jenkins
+#    last_name: CI
+#    email: support@company.com
+#    password: "s3cr3t"
+#    roles:
+#      - Deployer
+
+# SYSTEM
+## CAPABILITIES
+nexus_capability_branding_header: ""
+nexus_capability_branding_footer: "Last provisionned {{ ansible_date_time.iso8601 }}"
+
+## TASKS
+nexus_scheduled_tasks: []
+#  example task to compact blobstore :
+#  - name: compact-blobstore
+#    cron: '0 0 22 * * ?'
+#    typeId: blobstore.compact
+#    taskProperties:
+#      blobstoreName: 'default' # all task attributes are stored as strings by nexus internally
+
+# BLOBSTORES
+nexus_delete_default_blobstore: true
+nexus_blobstores_split: false
+
+# REPOSITORIES
+nexus_delete_default_repositories: true
+
+## MAVEN
+nexus_maven_enable: true
+nexus_repositories_maven:
+  proxy:
+    - name: maven-central
+      remote_url: https://repo1.maven.org/maven2/
+      layout_policy: permissive
+    - name: maven-jboss
+      remote_url: https://repository.jboss.org/nexus/content/groups/public-jboss/
+    #- name: maven-oracle
+    #  remote_url: https://maven.oracle.com
+    #  remote_username: ***
+    #  remote_password: ***
+    #  enableCircularRedirects: true
+    #  enableCookies: true
+    #  timeout: 10
+    #  retries: 5
+  hosted:
+    - name: maven-snapshots
+      version_policy: snapshot
+      write_policy: allow
+    - name: maven-releases
+      version_policy: release
+      write_policy: allow_once
+  group:
+    - name: maven-public
+      member_repos:
+        - maven-central
+        - maven-jboss
+        - maven-snapshots
+        - maven-releases
+
+## DOCKER
+nexus_docker_enable: false
+nexus_docker_proxy_port: 9080
+nexus_docker_hosted_port: 9081
+nexus_docker_group_port: 9082
+nexus_repositories_docker:
+  proxy:
+    - name: docker-proxy
+      http_port: "{{ nexus_docker_proxy_port }}"
+      v1_enabled: True
+      index_type: HUB
+      proxy_url: https://registry-1.docker.io
+      use_nexus_certificates_to_access_index: false
+  hosted:
+    - name: docker-hosted
+      http_port: "{{ nexus_docker_hosted_port }}"
+      v1_enabled: True
+  group:
+    - name: docker-public
+      http_port: "{{ nexus_docker_group_port }}"
+      v1_enabled: True
+      member_repos:
+        - docker-hosted
+        - docker-proxy
+
+## NPM
+nexus_npm_enable: false
+nexus_repositories_npm:
+  proxy:
+    - name: npm-proxy
+      remote_url: https://registry.npmjs.org
+  hosted:
+    - name: npm-hosted
+  group:
+    - name: npm-public
+      member_repos:
+        - npm-hosted
+        - npm-proxy
+
+## NUGET
+nexus_nuget_enable: false
+nexus_repositories_nuget:
+  proxy:
+    - name: nuget.org-proxy
+      remote_url: https://www.nuget.org/api/v2/
+  hosted:
+    - name: nuget-hosted
+  group:
+    - name: nuget-public
+      member_repos:
+        - nuget.org-proxy
+        - nuget-hosted
+
+## PYPI
+nexus_pypi_enable: false
+nexus_repositories_pypi:
+  proxy:
+    - name: pypi-proxy
+      remote_url: https://pypi.python.org/
+  hosted:
+    - name: pypi-hosted
+  group:
+    - name: pypi-public
+      member_repos:
+        - pypi-proxy
+        - pypi-hosted
+
+# MISCELLANEOUS
+nexus_force_reinstall: false

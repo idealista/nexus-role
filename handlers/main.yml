@@ -1,0 +1,6 @@
+---
+- name: restart nexus
+  systemd:
+    name: nexus
+    state: restarted
+  when: nexus_service_state != 'stopped'

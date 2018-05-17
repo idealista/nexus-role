@@ -1,0 +1,16 @@
+---
+
+- name: NEXUS | Create directory for {{ item.name}} blobStore
+  file:
+    path: "{{ item['path'] }}"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+    state: directory
+
+- name: NEXUS | Create {{ item.name }} blobStore
+  import_tasks: ../script/run_script.yml
+  vars:
+    script_name: create_blobstore
+    args:
+      name: "{{ item.name }}"
+      path: "{{ item.path }}"

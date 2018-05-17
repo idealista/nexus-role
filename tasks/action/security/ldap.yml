@@ -1,0 +1,21 @@
+---
+
+- name: NEXUS | Set LDAP access
+  import_tasks: ../../script/run_script.yml
+  vars:
+    script_name: security_ldap
+    args:
+      name: "{{ nexus_ldap_name }}"
+      protocol: "{{ nexus_ldap_protocol }}"
+      host: "{{ nexus_ldap_host }}"
+      port: "{{ nexus_ldap_port }}"
+      manager_dn: "{{ nexus_ldap_manager_dn | default('') }}"
+      password: "{{ nexus_ldap_password | default('') }}"
+      base_dn: "{{ nexus_ldap_base_dn | default('') }}"
+      search_base: "{{ nexus_ldap_search_base | default('') }}"
+      filter: "{{ nexus_ldap_filter | default('') }}"
+      user_object_class: "{{ nexus_ldap_user_object_class }}"
+      user_id_attribute: "{{ nexus_ldap_user_id_attribute }}"
+      user_real_name_attribute: "{{ nexus_ldap_user_real_name_attribute }}"
+      user_email_attribute: "{{ nexus_ldap_user_email_attribute }}"
+      user_subtree: "{{ nexus_ldap_user_subtree }}"

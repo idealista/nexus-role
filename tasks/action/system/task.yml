@@ -1,0 +1,7 @@
+---
+
+- name: NEXUS | Configure scheduled task {{ item.name }}
+  import_tasks: ../../script/run_script.yml
+  vars:
+    script_name: system_task
+    args: "{{ item }}"

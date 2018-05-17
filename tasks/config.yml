@@ -1,0 +1,62 @@
+---
+
+- name: NEXUS | Setup Nexus Xms
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^-Xms.*"
+    line: "-Xms{{ nexus_java_xms }}"
+  notify: restart nexus
+
+- name: NEXUS | Setup Nexus Xmx
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^-Xmx.*"
+    line: "-Xmx{{ nexus_java_xmx }}"
+  notify: restart nexus
+
+- name: NEXUS | Setup Nexus data directory
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^-Dkaraf.data=.*"
+    line: "-Dkaraf.data={{ nexus_data_path }}"
+  notify: restart nexus
+
+- name: NEXUS | Setup JVM logfile directory
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^-XX:LogFile=.*"
+    line: "-XX:LogFile={{ nexus_log_path }}/jvm.log"
+  notify: restart nexus
+
+- name: NEXUS | Setup Nexus tmp directory
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^-Djava.io.tmpdir=.*"
+    line: "-Djava.io.tmpdir={{ nexus_tmp_path }}"
+  notify: restart nexus
+
+- name: NEXUS | Setup Nexus java prefs directory
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^-Djava.util.prefs.userRoot=.*"
+    line: "-Djava.util.prefs.userRoot={{ nexus_tmp_path }}.java"
+  notify: restart nexus
+
+- name: NEXUS | Copy configuration
+  template:
+    src: nexus.properties.j2
+    dest: "{{ nexus_data_path }}/etc/nexus.properties"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+  notify: restart nexus
+
+- name: NEXUS | First-time install admin password
+  set_fact:
+    current_nexus_admin_password: 'admin123'
+  when: nexus_check|failed
+
+- name: NEXUS | Actual admin password
+  set_fact:
+    current_nexus_admin_password: "{{ nexus_admin_password }}"
+  when: nexus_check|success
+  no_log: true
