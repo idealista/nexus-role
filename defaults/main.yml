@@ -49,6 +49,13 @@ nexus_ldap_user_id_attribute: uid
 nexus_ldap_user_real_name_attribute: cn
 nexus_ldap_user_email_attribute: mail
 nexus_ldap_user_subtree: true
+nexus_ldap_map_groups_as_roles: false
+nexus_ldap_group_base_dn: cn=builtin
+nexus_ldap_group_object_class: group
+nexus_ldap_group_id_attribute: sAMAccountName
+nexus_ldap_group_member_attribute: member
+nexus_ldap_group_member_format: ${dn}
+nexus_ldap_group_subtree: false
 
 ## ROLES
 nexus_roles: []
