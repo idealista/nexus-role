@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased]
 
 
+## [1.1.0] (2018-06-07)
+### Added
+- *[#2](https://github.com/idealista/nexus-role/issues/2) Add ldap user group* @jmonterrubio
+
 ## [1.0.0] (2018-05-17)
 ### Added
 - *First release* @jmonterrubio
