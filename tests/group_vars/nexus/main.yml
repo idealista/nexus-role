@@ -41,6 +41,10 @@ nexus_users:
     roles:
       - Deployer
 
+nexus_realms:
+  - name: NuGetApiKey
+    enabled: false
+
 nexus_scheduled_tasks:
   - name: compact-blobstore
     cron: '0 0 22 * * ?'

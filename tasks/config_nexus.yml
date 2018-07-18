@@ -8,6 +8,7 @@
     - security/ldap
     - security/role
     - security/user
+    - security/realm
     - system/capability
     - system/task
     - delete_blobstore
@@ -48,6 +49,11 @@
   include_tasks: action/security/user.yml
   with_items:
     - "{{ nexus_users }}"
+
+- name: NEXUS | Security -> Realms
+  include_tasks: action/security/realm.yml
+  with_items:
+    - "{{ nexus_realms }}"
 
 - name: NEXUS | System -> Capabilities
   import_tasks: action/system/capability.yml
