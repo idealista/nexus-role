@@ -85,6 +85,13 @@ nexus_users: []
 #    roles:
 #      - Deployer
 
+## REALMS
+nexus_realms: []
+## Available realms: DockerToken, NpmToken, NuGetApiKey, rutauth-realm
+# example realm :
+#  - name: NuGetApiKey
+#    enabled: true
+
 # SYSTEM
 ## CAPABILITIES
 nexus_capability_branding_header: ""

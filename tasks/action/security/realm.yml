@@ -1,0 +1,7 @@
+---
+
+- name: NEXUS | Config {{ item.name }} realm
+  import_tasks: ../../script/run_script.yml
+  vars:
+    script_name: security_realm
+    args: "{{ item }}"
