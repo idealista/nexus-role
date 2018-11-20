@@ -41,6 +41,9 @@ configuration = new Configuration(
                 negativeCache: [
                         enabled: true,
                         timeToLive: 1440.0
+                ],
+                cleanup: [
+                        policyName: parsed_args.clean_policy
                 ]
         ]
 )

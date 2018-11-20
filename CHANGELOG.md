@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ### Added
 
+- *[#7](https://github.com/idealista/nexus-role/issues/7) Support cleanup policies* @jmonterrubio
+
+## [1.2.0] (2018-07-18)
+
+### Added
+
 - *[#4](https://github.com/idealista/nexus-role/issues/4) Enable security realms configuration* @jmonterrubio
 
 ## [1.1.0] (2018-06-07)
@@ -22,5 +28,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 - *First release* @jmonterrubio
 
 [Unreleased]: https://github.com/idealista/nexus-role/tree/develop
+[1.2.0]: https://github.com/idealista/nexus-role/tree/1.2.0
 [1.1.0]: https://github.com/idealista/nexus-role/tree/1.1.0
 [1.0.0]: https://github.com/idealista/nexus-role/tree/1.0.0
