@@ -6,7 +6,7 @@ java_open_jdk_version: 8
 java_open_jdk_set_version: 8
 
 ## NEXUS
-nexus_version: 3.11.0-01
+nexus_version: 3.14.0-04
 nexus_host: 0.0.0.0
 nexus_port: 8081
 nexus_docker_enable: true
@@ -51,3 +51,44 @@ nexus_scheduled_tasks:
     typeId: blobstore.compact
     taskProperties:
       blobstoreName: blob-mvn
+
+nexus_cleanup_policies:
+  - name: test
+    format: maven2
+    notes: Remove maven snapshots older than 30 days
+    criteria:
+      published_before: 100
+      last_download_before: 30
+      is_pre_release: false
+  - name: test2
+    format: all
+    notes: Remove all
+    criteria:
+      published_before: 23
+      last_download_before: 54
+
+nexus_repositories_maven:
+  proxy:
+    - name: maven-central
+      remote_url: https://repo1.maven.org/maven2/
+      layout_policy: permissive
+      clean_policy: test2
+    - name: maven-jboss
+      remote_url: https://repository.jboss.org/nexus/content/groups/public-jboss/
+      clean_policy: test2
+  hosted:
+    - name: maven-snapshots
+      version_policy: snapshot
+      write_policy: allow
+      clean_policy: test
+    - name: maven-releases
+      version_policy: release
+      write_policy: allow_once
+      clean_policy: test
+  group:
+    - name: maven-public
+      member_repos:
+        - maven-central
+        - maven-jboss
+        - maven-snapshots
+        - maven-releases

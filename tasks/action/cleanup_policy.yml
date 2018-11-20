@@ -1,0 +1,13 @@
+---
+
+- name: NEXUS | Set cleanup policy {{ item.name }}
+  import_tasks: ../script/run_script.yml
+  vars:
+    script_name: cleanup_policy
+    args:
+      name: "{{ item.name }}"
+      format: "{{ item.format }}"
+      notes: "{{ item.notes }}"
+      published_before: "{{ item.criteria.published_before }}"
+      last_download_before: "{{ item.criteria.last_download_before }}"
+      is_pre_release: "{{ item.criteria.is_pre_release | default('') }}"

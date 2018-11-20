@@ -110,6 +110,16 @@ nexus_scheduled_tasks: []
 nexus_delete_default_blobstore: true
 nexus_blobstores_split: false
 
+# CLEANUP POLICIES
+nexus_cleanup_policies: []
+  # - name: test
+  #   format: [all | bower | docker | gitlfs | maven2 | npm | nuget | pypi | raw | rubygems | yum]
+  #   notes: Remove maven snapshots older than 30 days - Not mandatory
+  #   criteria:
+  #     published_before: # Number in days - Not mandatory
+  #     last_download_before: # Number in days - Not mandatory
+  #     is_pre_release: # [true | false] Not mandatory
+
 # REPOSITORIES
 nexus_delete_default_repositories: true
 
