@@ -7,8 +7,8 @@
 This ansible role installs a Nexus Repository Manager 3 in a debian environment.
 
 - [Getting Started](#getting-started)
-	- [Prerequisities](#prerequisities)
-	- [Installing](#installing)
+  - [Prerequisities](#prerequisities)
+  - [Installing](#installing)
 - [Usage](#usage)
 - [Testing](#testing)
 - [Built With](#built-with)
@@ -24,7 +24,7 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.4.1.0 version installed.
+Ansible 2.4.3.0 version installed.
 Inventory destination should be a Debian environment.
 
 Java must be installed to run the service. Check [Sonatype help](https://help.sonatype.com/repomanager3/installation/java-runtime-environment) to see supported versions. Java can be installed using the [Idealista's Java Ansible role](https://github.com/idealista/java-role).
@@ -35,7 +35,7 @@ For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant
 
 Create or add to your roles dependency file (e.g requirements.yml) from GitHub:
 
-```
+```yml
 - src: http://github.com/idealista/nexus-role.git
   scm: git
   version: 1.0.0
@@ -44,7 +44,7 @@ Create or add to your roles dependency file (e.g requirements.yml) from GitHub:
 
 or using [Ansible Galaxy](https://galaxy.ansible.com/idealista/nexus-role/) as origin if you prefer:
 
-```
+```yml
 - src: idealista.nexus-role
   version: 1.0.0
   name: nexus
@@ -52,13 +52,13 @@ or using [Ansible Galaxy](https://galaxy.ansible.com/idealista/nexus-role/) as o
 
 Install the role with ansible-galaxy command:
 
-```
+```sh
 ansible-galaxy install -p roles -r requirements.yml -f
 ```
 
 Use in a playbook:
 
-```
+```yml
 ---
 - hosts: someserver
   roles:
@@ -75,7 +75,7 @@ You can edit nexus config and dashboards via template or webui.
 
 ## Testing
 
-```
+```sh
 molecule test --platform=Debian9
 ```
 
@@ -91,9 +91,9 @@ Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGE
 
 ## Authors
 
-* **Idealista** - *Work with* - [idealista](https://github.com/idealista)
+- **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista/nexus/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/nexus-role/contributors) who participated in this project.
 
 ## License
 
@@ -107,4 +107,4 @@ Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code o
 
 ## Acknowledgments
 
-* [Sonatype Blog](https://blog.sonatype.com/developing-an-ansible-role-for-nexus-repository-manager-v3.x) - Developing an ansible role for nexus v3.x
+- [Sonatype Blog](https://blog.sonatype.com/developing-an-ansible-role-for-nexus-repository-manager-v3.x) - Developing an ansible role for nexus v3.x

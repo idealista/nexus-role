@@ -11,6 +11,7 @@
     - security/realm
     - system/capability
     - system/task
+    - cleanup_policy
     - delete_blobstore
     - create_blobstore
     - delete_repository
@@ -62,6 +63,15 @@
   include_tasks: action/system/task.yml
   with_items:
     - "{{ nexus_scheduled_tasks }}"
+
+- name: NEXUS | Cleanup policies
+  include_tasks: action/cleanup_policy.yml
+  with_items:
+    - "{{ nexus_cleanup_policies }}"
+  when: >
+        nexus_version == 'latest' or
+        (nexus_version.split(".")[0] | int == 3 and
+        nexus_version.split(".")[1] | int >= 14)
 
 - name: NEXUS | Delete default repositories
   include_tasks: action/delete_repository.yml

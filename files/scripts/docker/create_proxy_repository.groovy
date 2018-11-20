@@ -32,6 +32,9 @@ configuration = new Configuration(
                         writePolicy: parsed_args.write_policy.toUpperCase(),
                         blobStoreName: parsed_args.blob_store,
                         strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
+                ],
+                cleanup: [
+                        policyName: parsed_args.clean_policy
                 ]
         ]
 )
