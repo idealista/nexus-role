@@ -128,10 +128,10 @@
   include_tasks: action/nuget/create_repository.yml
   with_items:
     - "{{ nexus_repositories_nuget }}"
-  when: nexus_npm_enable
+  when: nexus_nuget_enable
 
 - name: NEXUS | PYPI -> create repositories
   include_tasks: action/pypi/create_repository.yml
   with_items:
     - "{{ nexus_repositories_pypi }}"
-  when: nexus_npm_enable
+  when: nexus_pypi_enable
