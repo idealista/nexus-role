@@ -1,7 +1,7 @@
 ---
 
 nexus_repositories_pypi_default:
-  blob_store: "{{ nexus_blob_pypi | default('default') }}"
+  blob_store: "{{ nexus_blob_raw | default('default') }}"
   strict_content_validation: true
   #version_policy: release # release, snapshot or mixed
   #layout_policy: strict # strict or permissive
