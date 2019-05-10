@@ -222,5 +222,19 @@ nexus_repositories_pypi:
         - pypi-proxy
         - pypi-hosted
 
+## RAW
+nexus_raw_enable: false
+nexus_repositories_raw:
+  proxy:
+    - name: raw-proxy
+      remote_url: https://example.org/
+  hosted:
+    - name: raw-hosted
+  group:
+    - name: raw-public
+      member_repos:
+        - raw-proxy
+        - raw-hosted
+
 # MISCELLANEOUS
 nexus_force_reinstall: false
