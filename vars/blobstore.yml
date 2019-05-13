@@ -5,6 +5,7 @@ nexus_blob_docker: "{{ nexus_blob_prefix }}docker"
 nexus_blob_npm: "{{ nexus_blob_prefix }}npm"
 nexus_blob_nuget: "{{ nexus_blob_prefix }}nuget"
 nexus_blob_pypi: "{{ nexus_blob_prefix }}pypi"
+nexus_blob_raw: "{{ nexus_blob_prefix }}raw"
 
 nexus_blobstores:
   - name: "{{ nexus_blob_prefix }}mvn"
@@ -17,3 +18,5 @@ nexus_blobstores:
     path: "{{ nexus_data_path }}/blobs/{{ nexus_blob_nuget }}"
   - name: "{{ nexus_blob_prefix }}pypi"
     path: "{{ nexus_data_path }}/blobs/{{ nexus_blob_pypi }}"
+  - name: "{{ nexus_blob_prefix }}raw"
+    path: "{{ nexus_data_path }}/blobs/{{ nexus_blob_raw }}"

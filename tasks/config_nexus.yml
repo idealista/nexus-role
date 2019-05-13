@@ -30,6 +30,9 @@
     - pypi/create_proxy_repository
     - pypi/create_hosted_repository
     - pypi/create_group_repository
+    - raw/create_proxy_repository
+    - raw/create_hosted_repository
+    - raw/create_group_repository
 
 - name: NEXUS | Security -> Admin Password
   import_tasks: action/security/admin_password.yml
@@ -128,10 +131,16 @@
   include_tasks: action/nuget/create_repository.yml
   with_items:
     - "{{ nexus_repositories_nuget }}"
-  when: nexus_npm_enable
+  when: nexus_nuget_enable
 
 - name: NEXUS | PYPI -> create repositories
   include_tasks: action/pypi/create_repository.yml
   with_items:
     - "{{ nexus_repositories_pypi }}"
-  when: nexus_npm_enable
+  when: nexus_pypi_enable
+
+- name: NEXUS | RAW -> create repositories
+  include_tasks: action/raw/create_repository.yml
+  with_items:
+    - "{{ nexus_repositories_raw }}"
+  when: nexus_raw_enable
