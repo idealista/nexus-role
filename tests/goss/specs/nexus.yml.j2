@@ -51,6 +51,10 @@ file:
     owner: {{ nexus_user }}
     group: {{ nexus_group }}
     exists: true
+  {{ nexus_data_path }}/blobs/blob-raw:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
 
 port:
   tcp:8081:

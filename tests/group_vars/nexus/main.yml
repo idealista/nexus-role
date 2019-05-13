@@ -13,6 +13,7 @@ nexus_docker_enable: true
 nexus_npm_enable: true
 nexus_nuget_enable: true
 nexus_pypi_enable: true
+nexus_raw_enable: true
 nexus_blobstores_split: true
 
 nexus_admin_password: nexus
@@ -92,3 +93,15 @@ nexus_repositories_maven:
         - maven-jboss
         - maven-snapshots
         - maven-releases
+
+nexus_repositories_raw:
+  proxy:
+    - name: raw-proxy
+      remote_url: https://example.org/
+  hosted:
+    - name: raw-hosted
+  group:
+    - name: raw-public
+      member_repos:
+        - raw-proxy
+        - raw-hosted
