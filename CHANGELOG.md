@@ -3,31 +3,28 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
-## [Unreleased]
-
+## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
 ### Fixed
 - *Nuget and Pypi repositories were configured only if nexus_npm_enable: true* @jnogol
 
 ### Added
-- *[#7](https://github.com/idealista/nexus-role/issues/7) Support cleanup policies* @jmonterrubio
 - *[#12](https://github.com/idealista/nexus-role/issues/12) Ability to configure raw repositories* @jnogol
 
-## [1.2.0] (2018-07-18)
+## [1.3.0](https://github.com/idealista/nexus-role/tree/1.3.0) (2018-11-20)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/1.2.0...1.3.0)
+### Added
+- *[#7](https://github.com/idealista/nexus-role/issues/7) Support cleanup policies* @jmonterrubio
 
+## [1.2.0](https://github.com/idealista/nexus-role/tree/1.2.0) (2018-07-18)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/1.1.0...1.2.0)
 ### Added
 - *[#4](https://github.com/idealista/nexus-role/issues/4) Enable security realms configuration* @jmonterrubio
 
-## [1.1.0] (2018-06-07)
-
+## [1.1.0](https://github.com/idealista/nexus-role/tree/1.1.0) (2018-06-07)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/1.0.0...1.1.0)
 ### Added
 - *[#2](https://github.com/idealista/nexus-role/issues/2) Add ldap user group* @jmonterrubio
 
-## [1.0.0] (2018-05-17)
-
+## [1.0.0](https://github.com/idealista/nexus-role/tree/1.0.0) (2018-05-17)
 ### Added
 - *First release* @jmonterrubio
-
-[Unreleased]: https://github.com/idealista/nexus-role/tree/develop
-[1.2.0]: https://github.com/idealista/nexus-role/tree/1.2.0
-[1.1.0]: https://github.com/idealista/nexus-role/tree/1.1.0
-[1.0.0]: https://github.com/idealista/nexus-role/tree/1.0.0
