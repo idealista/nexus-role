@@ -4,11 +4,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
-### Fixed
-- *Nuget and Pypi repositories were configured only if nexus_npm_enable: true* @jnogol
 
+## [1.4.0](https://github.com/idealista/nexus-role/tree/1.4.0) (2019-03-13)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/1.3.0...1.4.0)
 ### Added
 - *[#12](https://github.com/idealista/nexus-role/issues/12) Ability to configure raw repositories* @jnogol
+
+### Fixed
+- *Nuget and Pypi repositories were configured only if nexus_npm_enable: true* @jnogol
 
 ## [1.3.0](https://github.com/idealista/nexus-role/tree/1.3.0) (2018-11-20)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/1.2.0...1.3.0)
