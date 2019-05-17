@@ -57,13 +57,13 @@ file:
     exists: true
 
 port:
-  tcp:8081:
+  tcp:{{ nexus_port }}:
     listening: true
-  tcp:9080:
+  tcp:{{ nexus_docker_proxy_port }}:
     listening: true
-  tcp:9081:
+  tcp:{{ nexus_docker_hosted_port }}:
     listening: true
-  tcp:9082:
+  tcp:{{ nexus_docker_group_port }}:
     listening: true
 
 service:
