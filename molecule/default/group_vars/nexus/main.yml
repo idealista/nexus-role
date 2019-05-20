@@ -1,10 +1,5 @@
 ---
 
-## JAVA
-java_implementation: openjdk
-java_open_jdk_version: 8
-java_open_jdk_set_version: 8
-
 ## NEXUS
 nexus_version: 3.14.0-04
 nexus_host: 0.0.0.0
