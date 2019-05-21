@@ -1,0 +1,33 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  enabled: False
+
+platforms:
+  - name: nexus-stretch
+    image: idealista/jdk:8u212-stretch-openjdk-headless 
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    groups:
+      - nexus
+    command: '/lib/systemd/systemd'
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+    enabled: False
+scenario:
+  name: default
+verifier:
+  name: goss
+  lint:
+    name: yamllint
+    enabled: False

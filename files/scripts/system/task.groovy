@@ -18,6 +18,7 @@ if (existingTask && !existingTask.remove()) {
 
 TaskConfiguration taskConfiguration = taskScheduler.createTaskConfigurationInstance(parsed_args.typeId)
 taskConfiguration.setName(parsed_args.name)
+taskConfiguration.setAlertEmail(parsed_args.alertEmail)
 
 parsed_args.taskProperties.each { key, value -> taskConfiguration.setString(key, value) }
 
