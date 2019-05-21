@@ -4,11 +4,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+
+## [1.5.0](https://github.com/idealista/nexus-role/tree/1.5.0) (2019-05-21)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/1.4.0...1.5.0)
 ### Added
 - *[#15](https://github.com/idealista/nexus-role/issues/15) Add Alert Email to Scheduled Tasks* @jnogol
 - *[#16](https://github.com/idealista/nexus-role/issues/16) Migrate tests to Molecule 2* @jnogol
 
-## [1.4.0](https://github.com/idealista/nexus-role/tree/1.4.0) (2019-03-13)
+## [1.4.0](https://github.com/idealista/nexus-role/tree/1.4.0) (2019-05-13)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/1.3.0...1.4.0)
 ### Added
 - *[#12](https://github.com/idealista/nexus-role/issues/12) Ability to configure raw repositories* @jnogol
