@@ -11,6 +11,7 @@
     - security/realm
     - system/capability
     - system/task
+    - system/http
     - cleanup_policy
     - delete_blobstore
     - create_blobstore
@@ -66,6 +67,9 @@
   include_tasks: action/system/task.yml
   with_items:
     - "{{ nexus_scheduled_tasks }}"
+
+- name: NEXUS | System -> Http
+  import_tasks: action/system/http.yml
 
 - name: NEXUS | Cleanup policies
   include_tasks: action/cleanup_policy.yml

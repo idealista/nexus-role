@@ -32,6 +32,22 @@ nexus_max_filedescriptors: 65536
 nexus_admin_password: admin123
 nexus_anonymous_access: true
 
+# HTTP
+nexus_http_proxy_host: ""
+nexus_http_proxy_port: 3128
+nexus_http_proxy_username: ""
+nexus_http_proxy_password: ""
+
+nexus_https_proxy_host: ""
+nexus_https_proxy_port: 3128
+nexus_https_proxy_username: ""
+nexus_https_proxy_password: ""
+
+nexus_no_proxy:
+  - "localhost"
+  - "127.*"
+  - "[::1]"
+
 ## LDAP
 ## https://books.sonatype.com/nexus-book/3.0/reference/security.html
 nexus_ldap_name: main_ldap

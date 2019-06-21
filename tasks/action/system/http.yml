@@ -1,0 +1,16 @@
+---
+
+- name: NEXUS | Configure HTTP
+  import_tasks: ../../script/run_script.yml
+  vars:
+    script_name: system_http
+    args:
+      http_proxy_host: "{{ nexus_http_proxy_host }}"
+      http_proxy_port: "{{ nexus_http_proxy_port }}"
+      http_proxy_username: "{{ nexus_http_proxy_username }}"
+      http_proxy_password: "{{ nexus_http_proxy_password }}"
+      https_proxy_host: "{{ nexus_https_proxy_host }}"
+      https_proxy_port: "{{ nexus_https_proxy_port }}"
+      https_proxy_username: "{{ nexus_https_proxy_username }}"
+      https_proxy_password: "{{ nexus_https_proxy_password }}"
+      no_proxy: "{{ nexus_no_proxy }}"
