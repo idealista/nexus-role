@@ -4,6 +4,7 @@
     pkg: "{{ item }}"
     state: present
   with_items: "{{ nexus_required_libs }}"
+  when: ansible_os_family == "Debian"
 
 - name: NEXUS | Ensure nexus group
   group:
