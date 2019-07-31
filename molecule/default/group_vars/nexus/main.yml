@@ -11,6 +11,8 @@ nexus_pypi_enable: true
 nexus_raw_enable: true
 nexus_blobstores_split: true
 
+nexus_jmx_enabled: true
+
 nexus_admin_password: nexus
 
 nexus_roles:

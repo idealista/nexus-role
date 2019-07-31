@@ -24,6 +24,14 @@ nexus_host: localhost
 nexus_port: 8081
 nexus_context_path: /
 
+## JMX
+nexus_jmx_enabled: false
+nexus_jmx_port: 9010
+nexus_jmx_remote: "true"
+nexus_jmx_local: "false"
+nexus_jmx_authenticate: "false"
+nexus_jmx_ssl: "false"
+
 nexus_java_xms: 2G
 nexus_java_xmx: 2G
 nexus_max_filedescriptors: 65536

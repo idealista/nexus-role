@@ -65,6 +65,8 @@ port:
     listening: true
   tcp:{{ nexus_docker_group_port }}:
     listening: true
+  tcp:{{ nexus_jmx_port }}:
+    listening: true
 
 service:
   nexus:

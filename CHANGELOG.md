@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Changed
 - *[#22](https://github.com/idealista/nexus-role/issues/22) Remove Java role deployment in tests* @jnogol
 - *Remove pipenv use in Travis* @jnogol
+- *[#26](https://github.com/idealista/nexus-role/issues/26) Enable jmx* @jmonterrubio
 
 ## [1.5.0](https://github.com/idealista/nexus-role/tree/1.5.0) (2019-05-21)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/1.4.0...1.5.0)
