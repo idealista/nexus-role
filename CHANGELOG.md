@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+## [1.6.0](https://github.com/idealista/nexus-role/tree/1.6.0) (2019-08-01)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/1.5.0...1.6.0)
 ### Changed
 - *[#22](https://github.com/idealista/nexus-role/issues/22) Remove Java role deployment in tests* @jnogol
 - *Remove pipenv use in Travis* @jnogol
