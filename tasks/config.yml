@@ -42,6 +42,15 @@
     line: "-Djava.util.prefs.userRoot={{ nexus_tmp_path }}.java"
   notify: restart nexus
 
+- name: NEXUS | Setup JMX 
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^{{ item.key }}=.*"
+    line: "{{ item.key }}={{ item.value }}"
+  notify: restart nexus
+  loop: "{{ nexus_jmx_properties }}"
+  when: nexus_jmx_enabled
+
 - name: NEXUS | Copy configuration
   template:
     src: nexus.properties.j2
