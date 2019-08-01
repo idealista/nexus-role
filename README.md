@@ -24,7 +24,7 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.4.5.0 version installed.
+Ansible 2.8.0.0 version installed.
 Inventory destination should be a Debian environment.
 
 Java must be installed to run the service. Check [Sonatype help](https://help.sonatype.com/repomanager3/installation/java-runtime-environment) to see supported versions. Java can be installed using the [Idealista's Java Ansible role](https://github.com/idealista/java-role).
@@ -81,7 +81,7 @@ molecule test --platform=Debian9
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.4.5.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.8.0.0-green.svg)
 
 ## Versioning
 
