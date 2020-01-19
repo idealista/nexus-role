@@ -44,5 +44,5 @@
 
 - name: NEXUS | Setting admin password
   set_fact:
-    current_nexus_admin_password: "{{ slurp_password.content }}"
+    current_nexus_admin_password: "{{ slurp_password.content | b64decode}}"
   when: admin_file.stat.exists
