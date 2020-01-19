@@ -61,7 +61,7 @@
 
 - name: NEXUS | First-time install admin password
   set_fact:
-    current_nexus_admin_password: "{{ lookup('file', nexus_data_path + '/admin.password') }}"
+    current_nexus_admin_password: 'admin123'
   when: nexus_check|failed
 
 - name: NEXUS | Actual admin password
