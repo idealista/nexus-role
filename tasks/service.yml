@@ -46,3 +46,8 @@
   set_fact:
     current_nexus_admin_password: "{{ slurp_password.content | b64decode}}"
   when: admin_file.stat.exists
+
+- name: NEXUS | Removing initial password file
+  file:
+    path: "{{ nexus_data_path }}/admin.password"
+    state: absent
