@@ -37,6 +37,7 @@
   register: admin_file
 
 - name: NEXUS | Setting admin password
+  become: yes
   set_fact:
     current_nexus_admin_password: "{{ lookup('file', nexus_data_path + '/admin.password') }}"
   when: admin_file.stat.exists
