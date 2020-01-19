@@ -40,7 +40,7 @@
   slurp:
     src: "{{ nexus_data_path }}/admin.password"
   register: slurp_password
-  when: admin.file.stat.exists
+  when: admin_file.stat.exists
 
 - name: NEXUS | Setting admin password
   set_fact:
