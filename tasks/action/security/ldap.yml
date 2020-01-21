@@ -1,7 +1,7 @@
 ---
 
 - name: NEXUS | Set LDAP access
-  import_tasks: ../../script/run_script.yml
+  include_tasks: ../../script/run_script.yml
   vars:
     script_name: security_ldap
     args:
