@@ -42,9 +42,9 @@ nexus_anonymous_access: true
 
 ## LDAP
 ## https://books.sonatype.com/nexus-book/3.0/reference/security.html
+nexus_ldap_authentication: false
 nexus_ldap_configs:
   - name: main_ldap
-    authentication: false
     protocol: ldap # ldap | ldaps
     host: localhost
     port: 10389
