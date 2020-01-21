@@ -41,7 +41,7 @@
   import_tasks: action/security/anonymous.yml
 
 - name: NEXUS | Security -> LDAP
-  import_tasks: action/security/ldap.yml
+  include_tasks: action/security/ldap.yml
   when: nexus_ldap_authentication
   loop: "{{ nexus_ldap_configs }}"
 
