@@ -43,6 +43,7 @@
 - name: NEXUS | Security -> LDAP
   import_tasks: action/security/ldap.yml
   when: nexus_ldap_authentication
+  loop: "{{ nexus_ldap_configs }}"
 
 - name: NEXUS | Security -> Roles
   include_tasks: action/security/role.yml

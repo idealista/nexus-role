@@ -1,7 +1,7 @@
 ---
 
 - name: NEXUS | Set LDAP access
-  include_tasks: ../../script/run_script.yml
+  import_tasks: ../../script/run_script.yml
   vars:
     script_name: security_ldap
     args:
@@ -26,4 +26,3 @@
       group_member_attribute: "{{ item.group_member_attribute | default('') }}"
       group_member_format: "{{ item.group_member_format | default('') }}"
       group_subtree: "{{ item.group_subtree  | default(false)}}"
-    loop: "{{ nexus_ldap_configs }}"
