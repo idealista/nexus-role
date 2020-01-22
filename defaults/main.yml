@@ -42,28 +42,29 @@ nexus_anonymous_access: true
 
 ## LDAP
 ## https://books.sonatype.com/nexus-book/3.0/reference/security.html
-nexus_ldap_name: main_ldap
 nexus_ldap_authentication: false
-nexus_ldap_protocol: ldap # ldap | ldaps
-nexus_ldap_host: localhost
-nexus_ldap_port: 10389
-nexus_ldap_dn: uid=admin,ou=system
-nexus_ldap_password: secret
-nexus_ldap_base_dn: ou=basicauth,ou=users,ou=axis,o=abc,c=au
-nexus_ldap_search_base: dc=mycompany,dc=net
-nexus_ldap_filter: (uid={0})
-nexus_ldap_user_object_class: inetOrgPerson # ..., person, user or posixAccount
-nexus_ldap_user_id_attribute: uid
-nexus_ldap_user_real_name_attribute: cn
-nexus_ldap_user_email_attribute: mail
-nexus_ldap_user_subtree: true
-nexus_ldap_map_groups_as_roles: false
-nexus_ldap_group_base_dn: cn=builtin
-nexus_ldap_group_object_class: group
-nexus_ldap_group_id_attribute: sAMAccountName
-nexus_ldap_group_member_attribute: member
-nexus_ldap_group_member_format: ${dn}
-nexus_ldap_group_subtree: false
+nexus_ldap_configs:
+  - name: main_ldap
+    protocol: ldap # ldap | ldaps
+    host: localhost
+    port: 10389
+    dn: uid=admin,ou=system
+    password: secret
+    base_dn: ou=basicauth,ou=users,ou=axis,o=abc,c=au
+    search_base: dc=mycompany,dc=net
+    filter: (uid={0})
+    user_object_class: inetOrgPerson # ..., person, user or posixAccount
+    user_id_attribute: uid
+    user_real_name_attribute: cn
+    user_email_attribute: mail
+    user_subtree: true
+    map_groups_as_roles: false
+    group_base_dn: cn=builtin
+    group_object_class: group
+    group_id_attribute: sAMAccountName
+    group_member_attribute: member
+    group_member_format: ${dn}
+    group_subtree: false
 
 ## ROLES
 nexus_roles: []
