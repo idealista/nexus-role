@@ -22,7 +22,7 @@ configuration.with{
         ]
 }
 
-def existingRepository = repositoryyManager.get(parsed_args.name)
+def existingRepository = repositoryManager.get(parsed_args.name)
 
 if (existingRepository != null) {
     existingRepository.stop()
