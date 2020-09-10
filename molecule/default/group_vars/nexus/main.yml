@@ -91,14 +91,86 @@ nexus_repositories_maven:
         - maven-snapshots
         - maven-releases
 
+nexus_repositories_docker:
+  proxy:
+    - name: docker-proxy
+      http_port: "{{ nexus_docker_proxy_port }}"
+      v1_enabled: True
+      index_type: HUB
+      proxy_url: https://registry-1.docker.io
+      use_nexus_certificates_to_access_index: false
+      clean_policy: None
+  hosted:
+    - name: docker-hosted
+      http_port: "{{ nexus_docker_hosted_port }}"
+      v1_enabled: True
+      clean_policy: None
+  group:
+    - name: docker-public
+      http_port: "{{ nexus_docker_group_port }}"
+      v1_enabled: True
+      member_repos:
+        - docker-hosted
+        - docker-proxy
+      clean_policy: None
+
+nexus_repositories_npm:
+  proxy:
+    - name: npm-proxy
+      remote_url: https://registry.npmjs.org
+      clean_policy: None
+  hosted:
+    - name: npm-hosted
+      clean_policy: None
+  group:
+    - name: npm-public
+      member_repos:
+        - npm-hosted
+        - npm-proxy
+      clean_policy: None
+
+## NUGET
+nexus_repositories_nuget:
+  proxy:
+    - name: nuget.org-proxy
+      remote_url: https://www.nuget.org/api/v2/
+      clean_policy: None
+  hosted:
+    - name: nuget-hosted
+      clean_policy: None
+  group:
+    - name: nuget-public
+      member_repos:
+        - nuget.org-proxy
+        - nuget-hosted
+      clean_policy: None
+
+nexus_repositories_pypi:
+  proxy:
+    - name: pypi-proxy
+      remote_url: https://pypi.python.org/
+      clean_policy: None
+  hosted:
+    - name: pypi-hosted
+      clean_policy: None
+  group:
+    - name: pypi-public
+      member_repos:
+        - pypi-proxy
+        - pypi-hosted
+      clean_policy: None
+
 nexus_repositories_raw:
   proxy:
     - name: raw-proxy
       remote_url: https://example.org/
+      clean_policy: None
   hosted:
     - name: raw-hosted
+      clean_policy: None
   group:
     - name: raw-public
       member_repos:
         - raw-proxy
         - raw-hosted
+      clean_policy: None
