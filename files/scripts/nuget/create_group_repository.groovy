@@ -1,14 +1,17 @@
 
 import groovy.json.JsonSlurper
 import org.sonatype.nexus.repository.config.Configuration
+import org.sonatype.nexus.repository.manager.RepositoryManager
 
+repositoryManager = container.lookup(RepositoryManager.class.getName())
 parsed_args = new JsonSlurper().parseText(args)
 
-configuration = new Configuration(
-        repositoryName: parsed_args.name,
-        recipeName: 'nuget-group',
-        online: true,
-        attributes: [
+Configuration configuration = repositoryManager.newConfiguration()
+configuration.with{
+        repositoryName = parsed_args.name
+        recipeName = 'nuget-group'
+        online = true
+        attributes = [
                 group  : [
                         memberNames: parsed_args.member_repos
                 ],
@@ -17,9 +20,9 @@ configuration = new Configuration(
                         strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
                 ]
         ]
-)
+}
 
-def existingRepository = repository.getRepositoryManager().get(parsed_args.name)
+def existingRepository = repositoryManager.get(parsed_args.name)
 
 if (existingRepository != null) {
     existingRepository.stop()
@@ -27,5 +30,5 @@ if (existingRepository != null) {
     existingRepository.update(configuration)
     existingRepository.start()
 } else {
-    repository.getRepositoryManager().create(configuration)
+    repositoryManager.create(configuration)
 }
