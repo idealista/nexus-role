@@ -1,7 +1,7 @@
 ---
 
 ## NEXUS
-nexus_version: 3.14.0-04
+nexus_version: 3.27.0-03
 nexus_host: 0.0.0.0
 nexus_port: 8081
 nexus_docker_enable: true
