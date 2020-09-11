@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 - [#39] *Support for nexus v3.21.2-03 and later versions.* @vicsufer
 ### Changed
 - [#39] *clean_policy variable is mandatory for repositories, set to None if no policy needed* @vicsufer
+- [#39] *change molecule image from jdk:8u222 to jdk:8u265* @vicsufer
 ### Removed
 - [#39] *nexus_role is no longer comptatible with nexus versions previous to 3.21.2-03. * @vicsufer
 ## [1.7.0](https://github.com/idealista/nexus-role/tree/1.7.0) (2020-01-20)
