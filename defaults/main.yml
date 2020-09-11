@@ -1,6 +1,6 @@
 ---
 # General
-nexus_version: latest # Or: 3.11.0-01, 3.10.0-04, 3.9.0-01, ...
+nexus_version: latest # Or: 3.27.0-03, 3.26.0-04, ..., 3.21.2-03
 
 ## Owner
 nexus_user: nexus
