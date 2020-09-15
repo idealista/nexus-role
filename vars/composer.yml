@@ -1,0 +1,8 @@
+---
+
+nexus_repositories_composer_default:
+  blob_store: "{{ nexus_blob_composer | default('default') }}"
+  strict_content_validation: true
+  version_policy: release # release, snapshot or mixed
+  layout_policy: strict # strict or permissive
+  write_policy: allow_once # allow_once or allow

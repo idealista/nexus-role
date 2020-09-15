@@ -9,7 +9,9 @@ nexus_npm_enable: true
 nexus_nuget_enable: true
 nexus_pypi_enable: true
 nexus_raw_enable: true
+nexus_composer_enable: true
 nexus_blobstores_split: true
+
 
 nexus_jmx_enabled: true
 
@@ -174,3 +176,22 @@ nexus_repositories_raw:
         - raw-proxy
         - raw-hosted
       clean_policy: None
+
+## COMPOSER
+nexus_repositories_composer:
+  plugin_version: 0.0.7
+  proxy:
+    - name: composer-proxy
+      remote_url: https://packagist.org/
+      clean_policy: None
+  hosted:
+    - name: composer-hosted
+      clean_policy: None
+  group:
+    - name: composer-public
+      member_repos:
+        - composer-hosted
+        - composer-proxy
+      clean_policy: None
+
+      

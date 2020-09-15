@@ -245,5 +245,21 @@ nexus_repositories_raw:
         - raw-proxy
         - raw-hosted
 
+## COMPOSER
+nexus_composer_enable: false
+nexus_repositories_composer:
+  plugin_version: 0.0.7
+  proxy:
+    - name: composer-proxy
+      remote_url: https://packagist.org/
+  hosted:
+    - name: composer-hosted
+  group:
+    - name: composer-public
+      member_repos:
+        - composer-hosted
+        - composer-proxy
+
+
 # MISCELLANEOUS
 nexus_force_reinstall: false
