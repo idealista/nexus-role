@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+
+## [2.0.0](https://github.com/idealista/nexus-role/tree/2.0.0) (2020-02-20)
 ### Added 
 - [#39] *Support for nexus v3.21.2-03 and later versions.* @vicsufer
 - [#38] *Support for composer repositories.* @vicsufer
