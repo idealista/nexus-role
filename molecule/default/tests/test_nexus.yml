@@ -55,6 +55,10 @@ file:
     owner: {{ nexus_user }}
     group: {{ nexus_group }}
     exists: true
+    {{ nexus_data_path }}/blobs/blob-composer:
+    owner: {{ nexus_user }}
+    group: {{ nexus_group }}
+    exists: true
 
 port:
   tcp:{{ nexus_port }}:

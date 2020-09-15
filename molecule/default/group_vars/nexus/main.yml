@@ -4,11 +4,11 @@
 nexus_version: 3.27.0-03
 nexus_host: 0.0.0.0
 nexus_port: 8081
-# nexus_docker_enable: true
-# nexus_npm_enable: true
-# nexus_nuget_enable: true
-# nexus_pypi_enable: true
-# nexus_raw_enable: true
+nexus_docker_enable: true
+nexus_npm_enable: true
+nexus_nuget_enable: true
+nexus_pypi_enable: true
+nexus_raw_enable: true
 nexus_composer_enable: true
 nexus_blobstores_split: true
 
