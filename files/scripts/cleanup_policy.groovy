@@ -1,7 +1,6 @@
 import groovy.json.JsonSlurper
 import java.util.concurrent.TimeUnit
 
-import org.sonatype.nexus.cleanup.storage.CleanupPolicy
 import org.sonatype.nexus.cleanup.storage.CleanupPolicyStorage
 import com.google.common.collect.Maps;
 
@@ -22,13 +21,13 @@ if (cleanupPolicyStorage.exists(parsed_args.name)) {
     cleanupPolicyStorage.update(existingPolicy)
 } else {
     format = parsed_args.format == "all" ? "ALL_FORMATS" : parsed_args.format
-    cleanupPolicy = new CleanupPolicy(
-        name: parsed_args.name,
-        notes: parsed_args.notes,
-        format: format,
-        mode: 'deletion',
-        criteria: criteriaMap
-    )
+    cleanupPolicy = cleanupPolicyStorage.newCleanupPolicy()
+    cleanupPolicy.setName(parsed_args.name)
+    cleanupPolicy.setNotes(parsed_args.notes)
+    cleanupPolicy.setFormat(format)
+    cleanupPolicy.setMode('deletion')
+    cleanupPolicy.setCriteria(criteriaMap)
+
     cleanupPolicyStorage.add(cleanupPolicy)
 }
 
