@@ -8,8 +8,8 @@ lint:
   enabled: False
 
 platforms:
-  - name: nexus-stretch
-    image: idealista/jdk:8u265-stretch-openjdk-headless
+  - name: nexus-test
+    image: ${DOCKER_IMAGE_BASE:-idealista/jdk:8u265-stretch-openjdk-headless}
     privileged: true
     capabilities:
       - SYS_ADMIN
@@ -18,12 +18,6 @@ platforms:
     groups:
       - nexus
     command: '/lib/systemd/systemd'
-    exposed_ports:
-      - 8081/tcp
-      - 8081/dup
-    published_ports:
-      - 0.0.0.0:8081:8081/udp
-      - 0.0.0.0:8081:8081/tcp
 
 provisioner:
   name: ansible

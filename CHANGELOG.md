@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Added 
 - [#39] *Support for nexus v3.21.2-03 and later versions.* @vicsufer
 - [#38] *Support for composer repositories.* @vicsufer
+- [#41] *Tests for Debian buster* @vicsufer
 ### Changed
 - [#39] *clean_policy variable is mandatory for repositories, set to None if no policy needed* @vicsufer
 - [#39] *change molecule image from jdk:8u222 to jdk:8u265* @vicsufer
