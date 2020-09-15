@@ -11,5 +11,11 @@ install:
 script:
   - molecule test --all
 
+env:
+  jobs:
+    DOCKER_IMAGE_BASE=idealista/jdk:8u265-stretch-openjdk-headless
+    DOCKER_IMAGE_BASE=idealista/jdk:8u265-buster-adoptopenjdk-headless
+
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
