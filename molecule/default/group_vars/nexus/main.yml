@@ -175,7 +175,7 @@ nexus_repositories_raw:
       member_repos:
         - raw-proxy
         - raw-hosted
-<<<<<<< HEAD
+      clean_policy: None
 
 ## COMPOSER
 nexus_repositories_composer:
@@ -183,14 +183,15 @@ nexus_repositories_composer:
   proxy:
     - name: composer-proxy
       remote_url: https://packagist.org/
+      clean_policy: None
   hosted:
     - name: composer-hosted
+      clean_policy: None
   group:
     - name: composer-public
       member_repos:
         - composer-hosted
         - composer-proxy
-
-=======
       clean_policy: None
->>>>>>> develop
+
+      
