@@ -8,20 +8,36 @@ parsed_args = new JsonSlurper().parseText(args)
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with{
         repositoryName = parsed_args.name
-        recipeName = 'docker-group'
+        recipeName = 'composer-proxy'
         online = true
         attributes = [
-                docker: [
+                composer: [
                         httpPort: parsed_args.http_port,
                         v1Enabled : parsed_args.v1_enabled
                 ],
-                group: [
-                        memberNames: parsed_args.member_repos
+                proxy: [
+                        remoteUrl: parsed_args.remote_url,
+                        contentMaxAge: 1440,
+                        metadataMaxAge: 1440
+                ],
+                composerProxy: [
+                        indexType: parsed_args.index_type,
+                        useTrustStoreForIndexAccess: parsed_args.use_nexus_certificates_to_access_index
+                ],
+                httpclient: [
+                        blocked: false,
+                        autoBlock: true,
+                        connection: [
+                          useTrustStore: false
+                        ]
                 ],
                 storage: [
                         writePolicy: parsed_args.write_policy.toUpperCase(),
                         blobStoreName: parsed_args.blob_store,
                         strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
+                ],
+                cleanup: [
+                        policyName: new HashSet<String>([parsed_args.clean_policy])
                 ]
         ]
 }

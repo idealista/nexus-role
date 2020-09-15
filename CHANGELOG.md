@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+
+## [2.0.0](https://github.com/idealista/nexus-role/tree/2.0.0) (2020-02-20)
+### Added 
+- [#39] *Support for nexus v3.21.2-03 and later versions.* @vicsufer
+- [#38] *Support for composer repositories.* @vicsufer
+- [#41] *Tests for Debian buster* @vicsufer
+### Changed
+- [#39] *clean_policy variable is mandatory for repositories, set to None if no policy needed* @vicsufer
+- [#39] *change molecule image from jdk:8u222 to jdk:8u265* @vicsufer
+### Removed
+- [#39] *nexus_role is no longer comptatible with nexus versions previous to 3.21.2-03. * @vicsufer
 ## [1.7.0](https://github.com/idealista/nexus-role/tree/1.7.0) (2020-01-20)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/1.6.1...1.7.0)
 ## Changed

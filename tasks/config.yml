@@ -51,6 +51,13 @@
   loop: "{{ nexus_jmx_properties }}"
   when: nexus_jmx_enabled
 
+- name: NEXUS | Download composer repository plugin
+  get_url:
+    url: https://search.maven.org/remotecontent?filepath=org/sonatype/nexus/plugins/nexus-repository-composer/{{ item.plugin_version }}/nexus-repository-composer-{{ item.plugin_version }}-bundle.kar
+    dest: "{{ nexus_installation_path }}/deploy"
+  with_items:
+    - "{{ nexus_repositories_composer }}"
+
 - name: NEXUS | Copy configuration
   template:
     src: nexus.properties.j2

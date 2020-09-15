@@ -8,8 +8,8 @@ lint:
   enabled: False
 
 platforms:
-  - name: nexus-stretch
-    image: idealista/jdk:8u222-stretch-openjdk-headless
+  - name: nexus-test
+    image: ${DOCKER_IMAGE_BASE:-idealista/jdk:8u265-stretch-openjdk-headless}
     privileged: true
     capabilities:
       - SYS_ADMIN

@@ -8,10 +8,10 @@ parsed_args = new JsonSlurper().parseText(args)
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with{
         repositoryName = parsed_args.name
-        recipeName = 'docker-group'
+        recipeName = 'composer-group'
         online = true
         attributes = [
-                docker: [
+                composer: [
                         httpPort: parsed_args.http_port,
                         v1Enabled : parsed_args.v1_enabled
                 ],
