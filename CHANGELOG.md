@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+### Added
+- [#45] *Add test to multiple configuration elements using nexus REST API* @vicsufer
+### Fix
+- [#45] *LDAP Groovy script is now compatible with latest API.* @vicsufer
 
 ## [2.0.0](https://github.com/idealista/nexus-role/tree/2.0.0) (2020-02-20)
 ### Added 
