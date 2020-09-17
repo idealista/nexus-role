@@ -72,6 +72,88 @@ port:
   tcp:{{ nexus_jmx_port }}:
     listening: true
 
+http:
+  #User
+{% for user in nexus_users %}
+  http://localhost:{{ nexus_port }}/service/rest/v1/security/users:
+    status: 200
+    body:
+    - "{{ user.username }}"
+    username: admin
+    password: "{{ nexus_admin_password }}"
+{% endfor %}
+  #Realm
+{% for realm in nexus_realms %}
+  http://localhost:{{ nexus_port }}/service/rest/v1/security/realms/available:
+    status: 200
+    body:
+    - "{{ realm.name }}"
+    username: admin
+    password: "{{ nexus_admin_password }}"
+{% endfor %}
+  #LDAP
+{% for ldap_config in nexus_ldap_configs %}
+  http://localhost:{{ nexus_port }}/service/rest/v1/security/ldap/{{ ldap_config.name }}:
+    status: 200
+    username: admin
+    password: "{{ nexus_admin_password }}"
+{% endfor %}
+
+{% for role in nexus_roles %}
+  #Role
+  http://localhost:{{ nexus_port }}/service/rest/v1/security/roles/{{ role.id }}:
+    status: 200
+    username: admin
+    password: "{{ nexus_admin_password }}"
+{% endfor %}
+
+  #Repositories
+  http://localhost:{{ nexus_port }}/service/rest/v1/repositories:
+    status: 200
+    username: admin
+    password: "{{ nexus_admin_password }}"
+    body:
+{% for repository_type in nexus_repositories_maven.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+{% for repository_type in nexus_repositories_docker.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+{% for repository_type in nexus_repositories_npm.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+{% for repository_type in nexus_repositories_nuget.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+{% for repository_type in nexus_repositories_pypi.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+{% for repository_type in nexus_repositories_raw.values() %}
+{% for repository in repository_type %}
+    - "{{ repository.name }}"
+{% endfor %}
+{% endfor %}
+# Composer repos depends on a plugin therefore we cannot iterate freely in its properties.
+{% for repository in nexus_repositories_composer.proxy %}
+    - "{{repository.name }}"
+{% endfor %}
+{% for repository in nexus_repositories_composer.hosted %}
+    - "{{repository.name }}"
+{% endfor %}
+{% for repository in nexus_repositories_composer.group %}
+    - "{{repository.name }}"
+{% endfor %}
+
 service:
   nexus:
     enabled: true
