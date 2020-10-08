@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+### Added
+- [#48] *Add support for MaxDirectMemotySize property* @vicsufer
 
 ## [2.0.1](https://github.com/idealista/nexus-role/tree/2.0.1) (2020-09-17)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/2.0.0...2.0.1)
