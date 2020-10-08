@@ -14,6 +14,13 @@
     line: "-Xmx{{ nexus_java_xmx }}"
   notify: restart nexus
 
+- name: NEXUS | Setup Nexus XX:MaxDirectMemorySize
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^-XX:MaxDirectMemorySize=.*"
+    line: "-XX:MaxDirectMemorySize={{ nexus_java_xxmaxdirectmemorysize }}"
+  notify: restart nexus
+
 - name: NEXUS | Setup Nexus data directory
   lineinfile:
     dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
