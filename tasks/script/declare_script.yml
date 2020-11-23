@@ -2,7 +2,7 @@
 
 - name: NEXUS | Removing previously Groovy script {{ item }}
   uri:
-    url: "http://localhost:{{ nexus_port }}{{ nexus_context_path }}service/rest/v1/script/{{ item | regex_replace('/', '_') }}"
+    url: "http://{{ nexus_host }}:{{ nexus_port }}{{ nexus_context_path }}service/rest/v1/script/{{ item | regex_replace('/', '_') }}"
     user: admin
     password: "{{ current_nexus_admin_password }}"
     method: DELETE
@@ -11,7 +11,7 @@
 
 - name: NEXUS | Declaring Groovy script {{ item }}
   uri:
-    url: "http://localhost:{{ nexus_port }}{{ nexus_context_path }}service/rest/v1/script"
+    url: "http://{{ nexus_host }}:{{ nexus_port }}{{ nexus_context_path }}service/rest/v1/script"
     user: admin
     password: "{{ current_nexus_admin_password }}"
     body_format: json

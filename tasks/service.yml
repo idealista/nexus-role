@@ -20,7 +20,7 @@
 
 - name: NEXUS | Waiting for Nexus service to be ready
   uri:
-    url: "http://localhost:{{ nexus_port }}{{ nexus_context_path }}"
+    url: "http://{{ nexus_host }}:{{ nexus_port }}{{ nexus_context_path }}"
     status_code: 200
   register: result
   until: result.status == 200
