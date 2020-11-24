@@ -44,7 +44,7 @@
     name: nexus
     state: stopped
   when:
-    - nexus_check|success
+    - nexus_check is success
     - nexus_force_reinstall or nexus_version == "latest" or nexus_check.content|b64decode != nexus_version
 
 - name: NEXUS | Untar nexus
@@ -55,7 +55,7 @@
     dest: "{{ nexus_installation_path }}"
     owner: "{{ nexus_user }}"
     group: "{{ nexus_group }}"
-  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check|failed or nexus_check.content|b64decode != nexus_version
+  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check is failed or nexus_check.content|b64decode != nexus_version
 
 - name: NEXUS | Fix permissions
   file:
@@ -63,7 +63,7 @@
     owner: "{{ nexus_user }}"
     group: "{{ nexus_group }}"
     recurse: yes
-  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check|failed or nexus_check.content|b64decode != nexus_version
+  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check is failed or nexus_check.content|b64decode != nexus_version
 
 - name: NEXUS | Set version file
   copy:
@@ -71,7 +71,7 @@
     dest: "{{ nexus_installation_path }}/VERSION"
     owner: "{{ nexus_user }}"
     group: "{{ nexus_group }}"
-  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check|failed or nexus_check.content|b64decode != nexus_version
+  when: nexus_force_reinstall or nexus_version == "latest" or nexus_check is failed or nexus_check.content|b64decode != nexus_version
 
 - name: NEXUS | Copy Daemon script
   template:
