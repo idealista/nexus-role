@@ -18,6 +18,16 @@ platforms:
     groups:
       - nexus
     command: '/lib/systemd/systemd'
+  - name: nexus-test-2
+    image: ${DOCKER_IMAGE_BASE:-idealista/jdk:8u265-stretch-openjdk-headless}
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+    groups:
+      - nexus
+    command: '/lib/systemd/systemd'
 
 provisioner:
   name: ansible
