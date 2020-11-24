@@ -6,7 +6,7 @@
 - name: NEXUS | Create raw proxy repository
   include_tasks: ../../script/run_script.yml
   with_items:
-    - "{{ item.proxy }}"
+    - "{{ item.proxy | default([]) }}"
   loop_control:
     loop_var: proxy
   vars:
@@ -16,7 +16,7 @@
 - name: NEXUS | Create raw hosted repository
   include_tasks: ../../script/run_script.yml
   with_items:
-    - "{{ item.hosted }}"
+    - "{{ item.hosted | default([]) }}"
   loop_control:
     loop_var: hosted
   vars:
@@ -26,7 +26,7 @@
 - name: NEXUS | Create raw group repository
   include_tasks: ../../script/run_script.yml
   with_items:
-    - "{{ item.group }}"
+    - "{{ item.group | default([]) }}"
   loop_control:
     loop_var: group
   vars:
