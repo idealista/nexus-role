@@ -49,7 +49,7 @@ nexus_ldap_configs:
     protocol: ldap # ldap | ldaps
     host: localhost
     port: 10389
-    dn: uid=admin,ou=system
+    manager_dn: uid=admin,ou=system
     password: secret
     base_dn: ou=basicauth,ou=users,ou=axis,o=abc,c=au
     search_base: dc=mycompany,dc=net
