@@ -9,6 +9,7 @@
       protocol: "{{ item.protocol }}"
       host: "{{ item.host }}"
       port: "{{ item.port }}"
+      use_trust_store: "{{ item.use_trust_store | default(False) }}"
       manager_dn: "{{ item.manager_dn | default('') }}"
       password: "{{ item.password | default('') }}"
       base_dn: "{{ item.base_dn | default('') }}"
