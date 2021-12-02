@@ -15,6 +15,7 @@ env:
   jobs:
     - DOCKER_IMAGE_BASE=idealista/jdk:8u265-stretch-openjdk-headless
     - DOCKER_IMAGE_BASE=idealista/jdk:8u265-buster-adoptopenjdk-headless
+    - DOCKER_IMAGE_BASE=idealista/jdk:8u292-bullseye-adoptopenjdk-headless
 
 
 notifications:

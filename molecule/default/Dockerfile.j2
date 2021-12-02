@@ -6,4 +6,9 @@ FROM {{ item.registry.url }}/{{ item.image }}
 FROM {{ item.image }}
 {% endif %}
 
+
+{% if item.image == 'idealista/jdk:8u292-bullseye-adoptopenjdk-headless' %}
+RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && apt-get install -y python3 sudo bash ca-certificates systemd systemd-sysv && apt-get clean; fi
+{% else %}
 RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && apt-get install -y python sudo bash ca-certificates systemd systemd-sysv && apt-get clean; fi
+{% endif %}
