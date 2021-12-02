@@ -8,7 +8,9 @@ FROM {{ item.image }}
 
 
 {% if item.image == 'idealista/jdk:8u292-bullseye-adoptopenjdk-headless' %}
-RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && apt-get install -y python3 sudo bash ca-certificates systemd systemd-sysv && apt-get clean; fi
+RUN if [ $(command -v apt-get) ]; then apt-get update  && apt-get upgrade -y && apt-get install -y python3 sudo bash ca-certificates systemd systemd-sysv && apt-get clean ; fi
+{% elif item.image == 'idealista/jdk:8u265-buster-adoptopenjdk-headless' %}
+RUN if [ $(command -v apt-get) ]; then apt-get update --allow-releaseinfo-change && apt-get upgrade -y && apt-get install -y python3 sudo bash ca-certificates systemd systemd-sysv && apt-get clean ; fi
 {% else %}
 RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && apt-get install -y python sudo bash ca-certificates systemd systemd-sysv && apt-get clean; fi
 {% endif %}
