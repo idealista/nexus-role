@@ -9,7 +9,7 @@ lint:
 
 platforms:
   - name: nexus-test
-    image: ${DOCKER_IMAGE_BASE:-idealista/jdk:8u265-stretch-openjdk-headless}
+    image: ${DOCKER_IMAGE_BASE:-idealista/jdk:8u292-bullseye-adoptopenjdk-headless}
     privileged: true
     capabilities:
       - SYS_ADMIN
