@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+### Added
+- [#49] *Add Debian 11 support* @aren-pulid0
 ### Fix
 - *Fix no longer supported test filter syntax* @jpiron
 - [#29] *Fix Nexus URLs in uri module calls* @jpiron
