@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
+
+## [2.2.0](https://github.com/idealista/nexus-role/tree/2.2.0)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/2.1.0...2.2.0)
 ### Added
-- [#60] *Update dependencies* @aren-pulid0
+- [#60] *Update roled dependencies* @aren-pulid0
 - [#58] *Add Debian 11 support* @aren-pulid0
 ### Fix
 - *Fix no longer supported test filter syntax* @jpiron
