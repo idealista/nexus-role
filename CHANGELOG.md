@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
 
+## [2.2.0](https://github.com/idealista/nexus-role/tree/2.2.0)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/2.1.0...2.2.0)
+### Added
+- [#60] *Update roled dependencies* @aren-pulid0
+- [#58] *Add Debian 11 support* @aren-pulid0
+### Fix
+- *Fix no longer supported test filter syntax* @jpiron
+- [#29] *Fix Nexus URLs in uri module calls* @jpiron
+
 ## [2.1.0](https://github.com/idealista/nexus-role/tree/2.1.0) (2020-10-08)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/2.0.1...2.1.0)
 ### Added

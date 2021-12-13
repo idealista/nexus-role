@@ -85,7 +85,7 @@
   with_items:
     - "{{ nexus_default_repositories }}"
   when:
-    - nexus_check|failed
+    - nexus_check is failed
     - nexus_delete_default_repositories
 
 - name: NEXUS | Delete default blobstore
@@ -93,7 +93,7 @@
   with_items:
     - default
   when:
-    - nexus_check|failed
+    - nexus_check is failed
     - nexus_delete_default_blobstore
 
 - block:

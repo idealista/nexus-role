@@ -76,10 +76,10 @@
 - name: NEXUS | First-time install admin password
   set_fact:
     current_nexus_admin_password: 'admin123'
-  when: nexus_check|failed
+  when: nexus_check is failed
 
 - name: NEXUS | Actual admin password
   set_fact:
     current_nexus_admin_password: "{{ nexus_admin_password }}"
-  when: nexus_check|success
+  when: nexus_check is success
   no_log: true
