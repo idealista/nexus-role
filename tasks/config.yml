@@ -49,6 +49,15 @@
     line: "-Djava.util.prefs.userRoot={{ nexus_tmp_path }}.java"
   notify: restart nexus
 
+- name: NEXUS | Setup Nexus custom JVM properties
+  lineinfile:
+    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
+    regexp: "^{{ item.key }}=.*"
+    line: "{{ item.key }}={{ item.value }}"
+  with_items: "{{ nexus_jvm_custom_options }}"
+  when: nexus_jvm_custom_options is defined
+  notify: restart nexus
+
 - name: NEXUS | Setup JMX 
   lineinfile:
     dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"

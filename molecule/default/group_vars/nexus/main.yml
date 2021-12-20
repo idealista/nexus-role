@@ -12,6 +12,9 @@ nexus_raw_enable: true
 nexus_composer_enable: true
 nexus_blobstores_split: true
 
+nexus_jvm_custom_options:
+  - key: "-Dlog4j2.formatMsgNoLookups"
+    value: "true"
 
 nexus_jmx_enabled: true
 
@@ -195,5 +198,3 @@ nexus_repositories_composer:
         - composer-hosted
         - composer-proxy
       clean_policy: None
-
-      
