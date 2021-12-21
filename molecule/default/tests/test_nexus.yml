@@ -144,13 +144,13 @@ http:
 {% endfor %}
 {% endfor %}
 # Composer repos depends on a plugin therefore we cannot iterate freely in its properties.
-{% for repository in nexus_repositories_composer.proxy %}
+{% for repository in nexus_repositories_composer.proxy | default([]) %}
     - "{{repository.name }}"
 {% endfor %}
-{% for repository in nexus_repositories_composer.hosted %}
+{% for repository in nexus_repositories_composer.hosted | default([]) %}
     - "{{repository.name }}"
 {% endfor %}
-{% for repository in nexus_repositories_composer.group %}
+{% for repository in nexus_repositories_composer.group | default([]) %}
     - "{{repository.name }}"
 {% endfor %}
 

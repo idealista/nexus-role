@@ -19,6 +19,10 @@
     - ./group_vars/nexus/main.yml
 
   tasks:
+    - name: Load dedicated host_vars if any
+      include_vars: "./host_vars/{{ inventory_hostname }}.yml"
+      ignore_errors: true
+
     - name: Download and install Goss
       get_url:
         url: "{{ goss_url }}"

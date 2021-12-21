@@ -1,0 +1,54 @@
+nexus_repositories_maven:
+  proxy:
+    - name: maven-central
+      remote_url: https://repo1.maven.org/maven2/
+      layout_policy: permissive
+      clean_policy: None
+
+nexus_repositories_docker:
+  proxy:
+    - name: docker-proxy
+      http_port: "{{ nexus_docker_proxy_port }}"
+      v1_enabled: True
+      index_type: HUB
+      proxy_url: https://registry-1.docker.io
+      use_nexus_certificates_to_access_index: false
+      clean_policy: None
+  hosted:
+    - name: docker-hosted
+      http_port: "{{ nexus_docker_hosted_port }}"
+      v1_enabled: True
+      clean_policy: None
+  group:
+    - name: docker-public
+      http_port: "{{ nexus_docker_group_port }}"
+      v1_enabled: True
+      member_repos:
+        - docker-hosted
+      clean_policy: None
+
+nexus_repositories_npm:
+  proxy:
+    - name: npm-proxy
+      remote_url: https://registry.npmjs.org
+      clean_policy: None
+  hosted:
+    - name: npm-hosted
+      clean_policy: None
+
+nexus_repositories_pypi:
+  hosted:
+    - name: pypi-hosted
+      clean_policy: None
+
+nexus_repositories_raw:
+  hosted:
+    - name: raw-hosted
+      clean_policy: None
+
+## COMPOSER
+nexus_repositories_composer:
+  plugin_version: 0.0.7
+  hosted:
+    - name: composer-hosted
+      clean_policy: None

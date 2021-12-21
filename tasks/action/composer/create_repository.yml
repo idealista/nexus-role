@@ -6,7 +6,7 @@
 - name: NEXUS | Create composer proxy repository
   include_tasks: ../../script/run_script.yml
   with_items:
-    - "{{ item.proxy }}"
+    - "{{ item.proxy | default([]) }}"
   loop_control:
     loop_var: proxy
   vars:
@@ -16,7 +16,7 @@
 - name: NEXUS | Create composer hosted repository
   include_tasks: ../../script/run_script.yml
   with_items:
-    - "{{ item.hosted }}"
+    - "{{ item.hosted | default([]) }}"
   loop_control:
     loop_var: hosted
   vars:
@@ -26,10 +26,9 @@
 - name: NEXUS | Create composer group repository
   include_tasks: ../../script/run_script.yml
   with_items:
-    - "{{ item.group }}"
+    - "{{ item.group | default([]) }}"
   loop_control:
     loop_var: group
   vars:
     script_name: composer_create_group_repository
     args: "{{ nexus_repositories_composer_default | combine(group) }}"
-

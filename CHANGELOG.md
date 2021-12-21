@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Fix
 - *Fix no longer supported test filter syntax* @jpiron
 - [#29] *Fix Nexus URLs in uri module calls* @jpiron
+- *Partial repository creation* @jpiron
 
 ## [2.1.0](https://github.com/idealista/nexus-role/tree/2.1.0) (2020-10-08)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/2.0.1...2.1.0)
