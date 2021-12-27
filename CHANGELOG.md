@@ -5,7 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
 ### Added
+- *Add `use_trust_store` LDAP configuration item* @jpiron
 - [#64] *Allow to configure custom jvm options* @vsuarez
+
 ## [2.2.0](https://github.com/idealista/nexus-role/tree/2.2.0)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/2.1.0...2.2.0)
 ### Added
@@ -14,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Fix
 - *Fix no longer supported test filter syntax* @jpiron
 - [#29] *Fix Nexus URLs in uri module calls* @jpiron
+- *Fix wrong LDAP attributes in default variables* @jpiron
 
 ## [2.1.0](https://github.com/idealista/nexus-role/tree/2.1.0) (2020-10-08)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/2.0.1...2.1.0)
@@ -29,7 +32,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [2.0.0](https://github.com/idealista/nexus-role/tree/2.0.0) (2020-09-16)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/1.7.0...2.0.0)
-### Added 
+### Added
 - [#39] *Support for nexus v3.21.2-03 and later versions.* @vicsufer
 - [#38] *Support for composer repositories.* @vicsufer
 - [#41] *Tests for Debian buster* @vicsufer
