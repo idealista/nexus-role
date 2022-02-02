@@ -54,11 +54,17 @@ file:
   {{ nexus_data_path }}/blobs/blob-raw:
     owner: {{ nexus_user }}
     group: {{ nexus_group }}
-    exists: true
+    exists: true F
   {{ nexus_data_path }}/blobs/blob-composer:
     owner: {{ nexus_user }}
     group: {{ nexus_group }}
     exists: true
+  /opt/nexus/datadog/dd-java-agent-0.73.0.jar:
+    exists: true
+  /opt/nexus/bin/nexus.vmoptions:
+    exists: true
+    contains:
+      - '-javaagent:/opt/nexus/datadog/dd-java-agent-0.73.0.jar -Ddd.profiling.enabled=true -Ddd.logs.injection=true -Ddd.service=sample -Ddd.env=molecule'
 
 port:
   tcp:{{ nexus_port }}:

@@ -1,0 +1,106 @@
+---
+
+- name: NEXUS | agent installation | Install required packages
+  apt:
+    pkg: "{{ nexus_agents_required_libs }}"
+    state: present
+    update_cache: yes
+  when: nexus_agents_required_libs is defined
+
+- name: NEXUS | agent installation | Ensure install path
+  file:
+    path: "{{ nexus_installation_path }}/{{ item.name }}"
+    state: directory
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+  with_items: '{{ nexus_agents_config }}'
+
+- name: NEXUS | agent installation | Check if agent is installed
+  stat:
+    path: "{{ nexus_installation_path }}/{{ item.0.name }}/{{ item.1 | basename }}"
+  register: agent_file_exists
+  with_subelements:
+    - "{{ nexus_agents_config }}"
+    - vm_opts
+
+- name: NEXUS | agent installation | Check agent version
+  command: "cat {{ nexus_installation_path }}/{{ item.0.name }}/version.txt"
+  register: agent_version_checked
+  changed_when: false
+  ignore_errors: true
+  with_subelements:
+    - "{{ nexus_agents_config }}"
+    - vm_opts
+
+- name: NEXUS | agent installation | Download agent
+  get_url:
+    dest: "/tmp"
+    url: "{{ item.download_url }}"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+    mode: '666'
+  register: agent_downloaded
+  loop: "{{ nexus_agents_config|flatten(levels=1) }}"
+  loop_control:
+    index_var: index
+  when: >
+   item.download_url | basename | splitext | last in nexus_supported_agents_extensions and
+    (nexus_agents_force_reinstall or not
+    agent_file_exists.results[index].stat.exists or
+    item.version != agent_version_checked.results[index].stdout)
+- name: NEXUS | agent installation | Unarchive package
+  unarchive:
+    src: "/tmp/{{ item.url | basename }}"
+    dest: "{{ nexus_installation_path }}"
+    remote_src: true
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+    mode: 0755
+  when: item.changed and item.url | basename | splitext | last in nexus_supported_agents_extensions
+  with_items: '{{ agent_downloaded.results }}'
+  tags:
+    - skip_ansible_lint
+
+- name: NEXUS | agent installation | Download agent jar
+  get_url:
+    dest: "{{ nexus_installation_path }}/{{ item.name }}"
+    url: "{{ item.download_url }}"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+  loop: '{{ nexus_agents_config | flatten(levels=1) }}'
+  register: agent_jar_downloaded
+  when: item.download_url | basename | splitext | last not in nexus_supported_agents_extensions
+
+- name: NEXUS | agent installation | Copy version number file
+  template:
+    src: "agents/version.txt.j2"
+    dest: "{{ nexus_installation_path }}/{{ item.name }}/version.txt"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+    mode: 0644
+  with_items: '{{ nexus_agents_config }}'
+
+- name: NEXUS | agent installation | Check configuration files
+  set_fact:
+    nexus_agent_configuration: "{{ nexus_agent_configuration|default([]) + [ {'name': item.0.name, 'file': item.1, 'params': item.0.params}] }}"
+  with_subelements:
+    - "{{ nexus_agents_config }}"
+    - configuration_files
+
+- name: NEXUS | agent installation | Configure the Java agent
+  template:
+    src: "{{ playbook_dir }}/templates/nexus/agents/{{ item.name }}/{{ item.file }}.j2"
+    dest: "{{ nexus_installation_path }}/{{ item.name }}/{{ item.file }}"
+    owner: "{{ nexus_user }}"
+    group: "{{ nexus_group }}"
+  when: agent_downloaded.changed
+  notify: restart nexus
+  with_items:
+    - '{{ nexus_agent_configuration }}'
+
+- name: NEXUS | agent installation | Check vm options
+  set_fact:
+    nexus_agent_vm_opts: "{% set nexus_agent_vm_opts = nexus_agent_vm_opts|default([]) + [item.1] %}{{ nexus_agent_vm_opts|list }}"
+  with_subelements:
+    - "{{ nexus_agents_config }}"
+    - vm_opts

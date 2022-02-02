@@ -1,71 +1,11 @@
 ---
 
-- name: NEXUS | Setup Nexus Xms
-  lineinfile:
+- name: NEXUS | Copy nexus.vmptions
+  template:
+    src: "{{ nexus_vm_options_template }}"
     dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^-Xms.*"
-    line: "-Xms{{ nexus_java_xms }}"
+    mode: 0644
   notify: restart nexus
-
-- name: NEXUS | Setup Nexus Xmx
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^-Xmx.*"
-    line: "-Xmx{{ nexus_java_xmx }}"
-  notify: restart nexus
-
-- name: NEXUS | Setup Nexus XX:MaxDirectMemorySize
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^-XX:MaxDirectMemorySize=.*"
-    line: "-XX:MaxDirectMemorySize={{ nexus_java_xxmaxdirectmemorysize }}"
-  notify: restart nexus
-
-- name: NEXUS | Setup Nexus data directory
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^-Dkaraf.data=.*"
-    line: "-Dkaraf.data={{ nexus_data_path }}"
-  notify: restart nexus
-
-- name: NEXUS | Setup JVM logfile directory
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^-XX:LogFile=.*"
-    line: "-XX:LogFile={{ nexus_log_path }}/jvm.log"
-  notify: restart nexus
-
-- name: NEXUS | Setup Nexus tmp directory
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^-Djava.io.tmpdir=.*"
-    line: "-Djava.io.tmpdir={{ nexus_tmp_path }}"
-  notify: restart nexus
-
-- name: NEXUS | Setup Nexus java prefs directory
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^-Djava.util.prefs.userRoot=.*"
-    line: "-Djava.util.prefs.userRoot={{ nexus_tmp_path }}.java"
-  notify: restart nexus
-
-- name: NEXUS | Setup Nexus custom JVM properties
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^{{ item.key }}=.*"
-    line: "{{ item.key }}={{ item.value }}"
-  with_items: "{{ nexus_jvm_custom_options }}"
-  when: nexus_jvm_custom_options is defined
-  notify: restart nexus
-
-- name: NEXUS | Setup JMX 
-  lineinfile:
-    dest: "{{ nexus_installation_path }}/bin/nexus.vmoptions"
-    regexp: "^{{ item.key }}=.*"
-    line: "{{ item.key }}={{ item.value }}"
-  notify: restart nexus
-  loop: "{{ nexus_jmx_properties }}"
-  when: nexus_jmx_enabled
 
 - name: NEXUS | Download composer repository plugin
   get_url:
