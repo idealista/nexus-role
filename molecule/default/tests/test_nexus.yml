@@ -64,7 +64,11 @@ file:
   /opt/nexus/bin/nexus.vmoptions:
     exists: true
     contains:
-      - '-javaagent:/opt/nexus/datadog/dd-java-agent-0.73.0.jar -Ddd.profiling.enabled=true -Ddd.logs.injection=true -Ddd.service=sample -Ddd.env=molecule'
+      - -javaagent:/opt/nexus/datadog/dd-java-agent-0.73.0.jar
+      - -Ddd.profiling.enabled=true
+      - -Ddd.logs.injection=true
+      - -Ddd.service=sample
+      - -Ddd.env=molecule
 
 port:
   tcp:{{ nexus_port }}:
