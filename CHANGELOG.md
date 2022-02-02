@@ -7,7 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Added
 - *Add `use_trust_store` LDAP configuration item* @jpiron
 - [#64] *Allow to configure custom jvm options* @vsuarez
-
+- [#66] *Support agents installation* @vsuarez
+- [#67] *Now nexus.vmoptions can be overrided with a playbook template* @vsuarez
 ## [2.2.0](https://github.com/idealista/nexus-role/tree/2.2.0)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/2.1.0...2.2.0)
 ### Added

@@ -5,6 +5,12 @@
   tags:
     - install
 
+- name: NEXUS | Agents configuration
+  import_tasks: agent.yml
+  tags:
+    - agent_config
+  when: nexus_agents_config is defined
+
 - name: NEXUS | Configure Service
   import_tasks: config.yml
   tags:
