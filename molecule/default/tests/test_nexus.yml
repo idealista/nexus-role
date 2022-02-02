@@ -54,7 +54,7 @@ file:
   {{ nexus_data_path }}/blobs/blob-raw:
     owner: {{ nexus_user }}
     group: {{ nexus_group }}
-    exists: true F
+    exists: true
   {{ nexus_data_path }}/blobs/blob-composer:
     owner: {{ nexus_user }}
     group: {{ nexus_group }}
