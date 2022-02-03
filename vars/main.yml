@@ -16,14 +16,9 @@ nexus_default_repositories:
   - nuget-hosted
   - nuget.org-proxy
 
-nexus_jmx_properties:
-  - key: "-Dcom.sun.management.jmxremote"
-    value: "{{ nexus_jmx_remote }}"
-  - key: "-Dcom.sun.management.jmxremote.port"
-    value: "{{ nexus_jmx_port }}"
-  - key: "-Dcom.sun.management.jmxremote.local.only"
-    value: "{{ nexus_jmx_local }}"
-  - key: "-Dcom.sun.management.jmxremote.authenticate"
-    value: "{{ nexus_jmx_authenticate }}"
-  - key: "-Dcom.sun.management.jmxremote.ssl"
-    value: "{{ nexus_jmx_ssl }}"
+nexus_supported_agents_extensions:
+  - '.zip'
+  - '.tar'
+  - '.tar.gz'
+  - '.tar.bz2'
+  - '.tar.xz'

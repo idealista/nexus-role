@@ -12,6 +12,31 @@ nexus_raw_enable: true
 nexus_composer_enable: true
 nexus_blobstores_split: true
 
+nexus_jvm_custom_options:
+  - -Dlog4j2.formatMsgNoLookups=true
+
+nexus_agents_config:
+  - name: "newrelic"
+    download_url: "http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip"
+    version: "6.4.1"
+    vm_opts:
+      - -javaagent:{{ nexus_installation_path }}/newrelic/newrelic.jar
+    configuration_files:
+      - "newrelic.yml"
+    params: {
+      application_name: "application_sample_name",
+      license_key: "sddsasd"
+    }
+  - name: "datadog"
+    download_url: "https://github.com/DataDog/dd-trace-java/releases/download/v0.73.0/dd-java-agent-0.73.0.jar"
+    version: "0.73.0"
+    vm_opts:
+      - -javaagent:{{ nexus_installation_path }}/datadog/dd-java-agent-0.73.0.jar
+      - -Ddd.profiling.enabled=true
+      - -Ddd.logs.injection=true
+      - -Ddd.service=sample
+      - -Ddd.env=molecule
+    configuration_files: []
 
 nexus_jmx_enabled: true
 
@@ -195,5 +220,3 @@ nexus_repositories_composer:
         - composer-hosted
         - composer-proxy
       clean_policy: None
-
-      

@@ -41,6 +41,10 @@ nexus_max_filedescriptors: 65536
 nexus_admin_password: admin123
 nexus_anonymous_access: true
 
+# VM Options
+nexus_vm_options_template: nexus.vmoptions.j2
+nexus_jvm_custom_options: []
+
 ## LDAP
 ## https://books.sonatype.com/nexus-book/3.0/reference/security.html
 nexus_ldap_authentication: false
@@ -49,7 +53,8 @@ nexus_ldap_configs:
     protocol: ldap # ldap | ldaps
     host: localhost
     port: 10389
-    dn: uid=admin,ou=system
+    use_trust_store: false
+    manager_dn: uid=admin,ou=system
     password: secret
     base_dn: ou=basicauth,ou=users,ou=axis,o=abc,c=au
     search_base: dc=mycompany,dc=net
@@ -261,6 +266,25 @@ nexus_repositories_composer:
         - composer-hosted
         - composer-proxy
 
-
 # MISCELLANEOUS
 nexus_force_reinstall: false
+
+## Agent configuration (optional)
+nexus_agents_force_reinstall: false
+nexus_agents_required_libs:
+  - unzip
+  - apt-transport-https
+
+# nexus_agents_config:
+#   - name: "agent_name"
+#     download_url: "download_url"
+#     version: "x.x.x"
+#     vm_opts:
+#       - -javaagent:{{ nexus_installation_path }}/agent_name/agent_file
+#       - -agentflag2
+#     configuration_files:
+#       - "configuration_file.yml"
+#     params: {
+#       application_name: "application_name",
+#       license_key: "license_key"
+#     }

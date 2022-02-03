@@ -1,0 +1,41 @@
+##################### Nexus VM options #####################
+#
+# {{ ansible_managed }}
+#
+-Xms{{ nexus_java_xms }}
+-Xmx{{ nexus_java_xmx }}
+-XX:MaxDirectMemorySize={{ nexus_java_xxmaxdirectmemorysize }}
+-XX:+UnlockDiagnosticVMOptions
+-XX:+LogVMOutput
+-XX:LogFile={{ nexus_log_path }}/jvm.log
+-XX:-OmitStackTraceInFastThrow
+-Djava.net.preferIPv4Stack=true
+-Dkaraf.home=.
+-Dkaraf.base=.
+-Dkaraf.etc=etc/karaf
+-Djava.util.logging.config.file=etc/karaf/java.util.logging.properties
+-Dkaraf.data={{ nexus_data_path }}
+-Dkaraf.log=../sonatype-work/nexus3/log
+-Djava.io.tmpdir={{ nexus_tmp_path }}
+-Dkaraf.startLocalConsole=false
+-Djava.endorsed.dirs=lib/endorsed
+-Djava.util.prefs.userRoot={{ nexus_tmp_path }}.java
+{% if nexus_jmx_enabled %}
+-Dcom.sun.management.jmxremote={{ nexus_jmx_remote }}
+-Dcom.sun.management.jmxremote.port={{ nexus_jmx_port }}
+-Dcom.sun.management.jmxremote.local.only={{ nexus_jmx_local }}
+-Dcom.sun.management.jmxremote.authenticate={{ nexus_jmx_authenticate }}
+-Dcom.sun.management.jmxremote.ssl={{ nexus_jmx_ssl }}
+{% endif %}
+
+{% if nexus_jvm_custom_options is defined %}
+{% for option in nexus_jvm_custom_options %}
+{{ option }}
+{% endfor %}
+{% endif %}
+
+{% if nexus_agent_vm_opts is defined%}
+{% for option in nexus_agent_vm_opts %}
+{{ option }}
+{% endfor %}
+{% endif %}
