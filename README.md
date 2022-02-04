@@ -24,7 +24,7 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.8.0.0 version installed.
+Ansible 5.0.1 version installed.
 Inventory destination should be a Debian environment.
 
 Java must be installed to run the service. Check [Sonatype help](https://help.sonatype.com/repomanager3/installation/java-runtime-environment) to see supported versions. Java can be installed using the [Idealista's Java Ansible role](https://github.com/idealista/java-role).
@@ -38,7 +38,7 @@ Create or add to your roles dependency file (e.g requirements.yml) from GitHub:
 ```yml
 - src: http://github.com/idealista/nexus-role.git
   scm: git
-  version: 1.0.0
+  version: 2.3.1
   name: nexus
 ```
 
@@ -46,7 +46,7 @@ or using [Ansible Galaxy](https://galaxy.ansible.com/idealista/nexus-role/) as o
 
 ```yml
 - src: idealista.nexus-role
-  version: 1.0.0
+  version: 2.3.1
   name: nexus
 ```
 
@@ -81,7 +81,7 @@ molecule test --platform=Debian9
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.8.0.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-5.0.1-green.svg)
 
 ## Versioning
 

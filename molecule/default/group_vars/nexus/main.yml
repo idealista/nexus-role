@@ -1,7 +1,7 @@
 ---
 
 ## NEXUS
-nexus_version: 3.27.0-03
+nexus_version: 3.37.3-02
 nexus_host: 0.0.0.0
 nexus_port: 8081
 nexus_docker_enable: true
@@ -206,7 +206,7 @@ nexus_repositories_raw:
 
 ## COMPOSER
 nexus_repositories_composer:
-  plugin_version: 0.0.7
+  plugin_version: 0.0.18
   proxy:
     - name: composer-proxy
       remote_url: https://packagist.org/

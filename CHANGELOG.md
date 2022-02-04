@@ -4,8 +4,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
-
-## [2.3.0](https://github.com/idealista/nexus-role/tree/2.2.0)
+## [2.3.1](https://github.com/idealista/nexus-role/tree/2.3.1)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/2.3.0...2.3.1)
+### Added
+- *Add Pipfiles* @emepege
+### Fixed
+- *[#45](https://github.com/idealista/nexus-role/issues/70) Notify nexus service restart when composer plugin is downloaded* @emepege
+## [2.3.0](https://github.com/idealista/nexus-role/tree/2.3.0)
 [Full Changelog](https://github.com/idealista/nexus-role/compare/2.2.0...2.3.0)
 ### Added
 - *Add `use_trust_store` LDAP configuration item* @jpiron
