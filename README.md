@@ -56,7 +56,7 @@ Install the role with ansible-galaxy command:
 ansible-galaxy install -p roles -r requirements.yml -f
 ```
 
-Use in a playbook:
+#### Example playbook:
 
 ```yml
 ---
