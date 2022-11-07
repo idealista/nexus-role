@@ -18,7 +18,8 @@ configuration.with{
                 storage: [
                         writePolicy: parsed_args.write_policy.toUpperCase(),
                         blobStoreName: parsed_args.blob_store,
-                        strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
+                        strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation),
+                        latestPolicy: Boolean.valueOf(parsed_args.latest_policy)
                 ],
                 cleanup: [
                         policyName: new HashSet<String>([parsed_args.clean_policy]) 

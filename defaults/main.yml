@@ -187,6 +187,7 @@ nexus_repositories_docker:
     - name: docker-hosted
       http_port: "{{ nexus_docker_hosted_port }}"
       v1_enabled: True
+      latest_policy: False
   group:
     - name: docker-public
       http_port: "{{ nexus_docker_group_port }}"
