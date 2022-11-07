@@ -7,9 +7,13 @@ driver:
 platforms:
   - name: nexus-test
     image: ${DOCKER_BASE_IMAGE:-idealista/jdk:8u292-bullseye-adoptopenjdk-headless}
-    privileged: true
+    privileged: false
     capabilities:
       - SYS_ADMIN
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
     volumes:
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
     groups:
