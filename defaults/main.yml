@@ -64,7 +64,9 @@ nexus_ldap_configs:
     user_real_name_attribute: cn
     user_email_attribute: mail
     user_subtree: true
-    map_groups_as_roles: false
+    map_groups_as_roles: true
+    #group_type_dynamic: true
+    user_member_of_attribute: memberOf
     group_base_dn: cn=builtin
     group_object_class: group
     group_id_attribute: sAMAccountName
