@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ### Added
 
-- *[#78](https://github.com/idealista/nexus-role/issues/78)* Add option to allow LDAP dynamic group type
+- *[#78](https://github.com/idealista/nexus-role/issues/78)* Add option to allow LDAP dynamic group type* @mgnavarrete
 
 ## [2.3.2](https://github.com/idealista/nexus-role/tree/2.3.2)
 
