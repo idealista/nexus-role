@@ -21,6 +21,8 @@
       user_email_attribute: "{{ item.user_email_attribute }}"
       user_subtree: "{{ item.user_subtree }}"
       map_groups_as_roles: "{{ item.map_groups_as_roles }}"
+      group_type_dynamic: "{{ item.group_type_dynamic | default(false)}}"
+      user_member_of_attribute: "{{ item.user_member_of_attribute | default('') }}"
       group_base_dn: "{{ item.group_base_dn | default('') }}"
       group_object_class: "{{ item.group_object_class | default('') }}"
       group_id_attribute: "{{ item.group_id_attribute  | default('') }}"

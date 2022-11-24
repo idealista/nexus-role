@@ -49,13 +49,18 @@ mapping.setEmailAddressAttribute(parsed_args.user_email_attribute)
 mapping.setUserSubtree(parsed_args.user_subtree)
 
 if (parsed_args.map_groups_as_roles) {
-    mapping.setLdapGroupsAsRoles(true)
-    mapping.setGroupBaseDn(parsed_args.group_base_dn)
-    mapping.setGroupObjectClass(parsed_args.group_object_class)
-    mapping.setGroupIdAttribute(parsed_args.group_id_attribute)
-    mapping.setGroupMemberAttribute(parsed_args.group_member_attribute)
-    mapping.setGroupMemberFormat(parsed_args.group_member_format)
-    mapping.setGroupSubtree(parsed_args.group_subtree)
+    if (parsed_args.group_type_dynamic) {
+        mapping.setLdapGroupsAsRoles(true)
+        mapping.setUserMemberOfAttribute(parsed_args.user_member_of_attribute)
+    } else {
+        mapping.setLdapGroupsAsRoles(true)
+        mapping.setGroupBaseDn(parsed_args.group_base_dn)
+        mapping.setGroupObjectClass(parsed_args.group_object_class)
+        mapping.setGroupIdAttribute(parsed_args.group_id_attribute)
+        mapping.setGroupMemberAttribute(parsed_args.group_member_attribute)
+        mapping.setGroupMemberFormat(parsed_args.group_member_format)
+        mapping.setGroupSubtree(parsed_args.group_subtree)
+    }
 }
 
 ldapConfig.setMapping(mapping)
