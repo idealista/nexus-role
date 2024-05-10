@@ -3,7 +3,7 @@ nexus_required_libs:
   - unzip
 
 nexus_mirror: https://download.sonatype.com/nexus/3
-nexus_package_name: "{{ (nexus_version == 'latest') | ternary('', 'nexus-') }}{{ nexus_version }}-unix"
+nexus_package_name: "{{ (nexus_version == 'latest') | ternary('', 'nexus-') }}{{ nexus_version }}{{ (nexus_version is version('3.66.0', '>')) | ternary('-java' + java_version | string, '') }}-{{ os }}"
 nexus_package: "{{ nexus_package_name }}.tar.gz"
 nexus_sources_url: "{{ nexus_mirror }}/{{ nexus_package }}"
 
