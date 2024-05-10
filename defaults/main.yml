@@ -6,6 +6,10 @@ nexus_version: latest # Or: 3.27.0-03, 3.26.0-04, ..., 3.21.2-03
 nexus_user: nexus
 nexus_group: nexus
 
+## Operative system 
+os : unix # options: unix/win64/mac
+java_version: 8
+
 # Service options
 
 ## start on boot
@@ -257,7 +261,7 @@ nexus_repositories_raw:
 ## COMPOSER
 nexus_composer_enable: false
 nexus_repositories_composer:
-  plugin_version: 0.0.7
+  plugin_version: 0.0.29
   proxy:
     - name: composer-proxy
       remote_url: https://packagist.org/
