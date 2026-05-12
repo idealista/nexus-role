@@ -7,14 +7,11 @@ RepositoryManager repositoryManager = container.lookup(RepositoryManager.class.g
 RoutingRuleStore routingRuleStore = container.lookup(RoutingRuleStore.class.getName())
 parsed_args = new JsonSlurper().parseText(args)
 
-def routingRuleId = parsed_args.routing_rule ? routingRuleStore.getByName(parsed_args.routing_rule)?.id() : null
-
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with{
         repositoryName = parsed_args.name
         recipeName = 'docker-proxy'
         online = true
-        routingRuleId = routingRuleId
         attributes = [
                 docker: [
                         httpPort: parsed_args.http_port,
@@ -22,8 +19,8 @@ configuration.with{
                 ],
                 proxy: [
                         remoteUrl: parsed_args.proxy_url,
-                        contentMaxAge: 1440,
-                        metadataMaxAge: 1440
+                        contentMaxAge: 1440.0,
+                        metadataMaxAge: 1440.0
                 ],
                 dockerProxy: [
                         indexType: parsed_args.index_type,
@@ -42,9 +39,13 @@ configuration.with{
                         strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
                 ],
                 cleanup: [
-                        policyName: new HashSet<String>([parsed_args.clean_policy]) 
+                        policyName: new HashSet<String>([parsed_args.clean_policy])
                 ]
         ]
+}
+
+if (parsed_args.routing_rule) {
+    configuration.routingRuleId = routingRuleStore.getByName(parsed_args.routing_rule)?.id()
 }
 
 def existingRepository = repositoryManager.get(parsed_args.name)

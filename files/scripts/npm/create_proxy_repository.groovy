@@ -12,14 +12,11 @@ authentication = parsed_args.remote_username == null ? null : [
         password: parsed_args.remote_password
 ]
 
-def routingRuleId = parsed_args.routing_rule ? routingRuleStore.getByName(parsed_args.routing_rule)?.id() : null
-
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with{
         repositoryName = parsed_args.name
         recipeName = 'npm-proxy'
         online = true
-        routingRuleId = routingRuleId
         attributes = [
                 proxy  : [
                         remoteUrl: parsed_args.remote_url,
@@ -42,9 +39,13 @@ configuration.with{
                         timeToLive: 1440.0
                 ],
                 cleanup: [
-                        policyName: new HashSet<String>([parsed_args.clean_policy]) 
+                        policyName: new HashSet<String>([parsed_args.clean_policy])
                 ]
         ]
+}
+
+if (parsed_args.routing_rule) {
+    configuration.routingRuleId = routingRuleStore.getByName(parsed_args.routing_rule)?.id()
 }
 
 def existingRepository = repositoryManager.get(parsed_args.name)
