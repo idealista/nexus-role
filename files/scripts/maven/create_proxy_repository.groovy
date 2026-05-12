@@ -1,8 +1,10 @@
 import groovy.json.JsonSlurper
 import org.sonatype.nexus.repository.config.Configuration
 import org.sonatype.nexus.repository.manager.RepositoryManager
+import org.sonatype.nexus.repository.routing.RoutingRuleStore
 
 RepositoryManager repositoryManager = container.lookup(RepositoryManager.class.getName())
+RoutingRuleStore routingRuleStore = container.lookup(RoutingRuleStore.class.getName())
 parsed_args = new JsonSlurper().parseText(args)
 
 authentication = parsed_args.remote_username == null ? null : [
@@ -11,11 +13,14 @@ authentication = parsed_args.remote_username == null ? null : [
         password: parsed_args.remote_password
 ]
 
+def routingRuleId = parsed_args.routing_rule ? routingRuleStore.getByName(parsed_args.routing_rule)?.id() : null
+
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with {
         repositoryName = parsed_args.name
         recipeName = 'maven2-proxy'
         online = true
+        routingRuleId = routingRuleId
         attributes = [
                 maven  : [
                         versionPolicy: parsed_args.version_policy.toUpperCase(),

@@ -1,15 +1,20 @@
 import groovy.json.JsonSlurper
 import org.sonatype.nexus.repository.config.Configuration
 import org.sonatype.nexus.repository.manager.RepositoryManager
+import org.sonatype.nexus.repository.routing.RoutingRuleStore
 
 repositoryManager = container.lookup(RepositoryManager.class.getName())
+routingRuleStore = container.lookup(RoutingRuleStore.class.getName())
 parsed_args = new JsonSlurper().parseText(args)
+
+def routingRuleId = parsed_args.routing_rule ? routingRuleStore.getByName(parsed_args.routing_rule)?.id() : null
 
 Configuration configuration = repositoryManager.newConfiguration()
 configuration.with{
         repositoryName = parsed_args.name
         recipeName = 'composer-proxy'
         online = true
+        routingRuleId = routingRuleId
         attributes = [
                 composer: [
                         httpPort: parsed_args.http_port,

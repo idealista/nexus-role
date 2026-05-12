@@ -141,6 +141,14 @@ nexus_cleanup_policies: []
   #     last_download_before: # Number in days - Not mandatory
   #     is_pre_release: # [true | false] Not mandatory
 
+# ROUTING RULES
+nexus_routing_rules: []
+  # - name: block-snapshots
+  #   description: Block snapshot artifacts  # optional
+  #   mode: BLOCK  # BLOCK or ALLOW
+  #   matchers:
+  #     - ^/.*-SNAPSHOT.*
+
 # REPOSITORIES
 nexus_delete_default_repositories: true
 
