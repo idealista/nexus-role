@@ -17,8 +17,8 @@ configuration.with{
                 ],
                 proxy: [
                         remoteUrl: parsed_args.remote_url,
-                        contentMaxAge: 1440,
-                        metadataMaxAge: 1440
+                        contentMaxAge: parsed_args.content_max_age.toDouble(),
+                        metadataMaxAge: parsed_args.metadata_max_age.toDouble()
                 ],
                 composerProxy: [
                         indexType: parsed_args.index_type,
