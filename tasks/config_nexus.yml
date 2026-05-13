@@ -12,6 +12,7 @@
     - system/capability
     - system/task
     - cleanup_policy
+    - routing_rule
     - delete_blobstore
     - create_blobstore
     - delete_repository
@@ -79,6 +80,15 @@
         nexus_version == 'latest' or
         (nexus_version.split(".")[0] | int == 3 and
         nexus_version.split(".")[1] | int >= 14)
+
+- name: NEXUS | Routing rules
+  include_tasks: action/routing_rule.yml
+  with_items:
+    - "{{ nexus_routing_rules }}"
+  when: >
+        nexus_version == 'latest' or
+        (nexus_version.split(".")[0] | int == 3 and
+        nexus_version.split(".")[1] | int >= 17)
 
 - name: NEXUS | Delete default repositories
   include_tasks: action/delete_repository.yml

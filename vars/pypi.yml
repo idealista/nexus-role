@@ -6,3 +6,5 @@ nexus_repositories_pypi_default:
   #version_policy: release # release, snapshot or mixed
   #layout_policy: strict # strict or permissive
   write_policy: allow_once # allow_once or allow
+  content_max_age: 1440 # -1 for immutable content (releases)
+  metadata_max_age: 1440

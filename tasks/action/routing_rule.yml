@@ -1,0 +1,11 @@
+---
+
+- name: NEXUS | Set routing rule {{ item.name }}
+  import_tasks: ../script/run_script.yml
+  vars:
+    script_name: routing_rule
+    args:
+      name: "{{ item.name }}"
+      description: "{{ item.description | default('') }}"
+      mode: "{{ item.mode }}"
+      matchers: "{{ item.matchers }}"
