@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/nexus-role/tree/develop)
 
 ### Added
+- *[#86](https://github.com/idealista/nexus-role/issues/86)* Customizable metadataMaxAge and ContentMaxAge* @xtianae7
+- *[#87](https://github.com/idealista/nexus-role/issues/87)* Routing rules support* @xtianae7
+
+## [2.4.1](https://github.com/idealista/nexus-role/tree/2.4.1)
+[Full Changelog](https://github.com/idealista/nexus-role/compare/2.4.0...2.4.1)
+### Added
 - *[#83](https://github.com/idealista/nexus-role/issues/83)* Remove unnecessary access org.sonatype.nexus.security.realm.RealmConfiguration to allow use nexus newer versions * @ygomez
 
 ## [2.4.0](https://github.com/idealista/nexus-role/tree/2.4.0)
