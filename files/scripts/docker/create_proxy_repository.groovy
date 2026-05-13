@@ -1,8 +1,10 @@
 import groovy.json.JsonSlurper
 import org.sonatype.nexus.repository.config.Configuration
 import org.sonatype.nexus.repository.manager.RepositoryManager
+import org.sonatype.nexus.repository.routing.RoutingRuleStore
 
 RepositoryManager repositoryManager = container.lookup(RepositoryManager.class.getName())
+RoutingRuleStore routingRuleStore = container.lookup(RoutingRuleStore.class.getName())
 parsed_args = new JsonSlurper().parseText(args)
 
 Configuration configuration = repositoryManager.newConfiguration()
@@ -17,8 +19,8 @@ configuration.with{
                 ],
                 proxy: [
                         remoteUrl: parsed_args.proxy_url,
-                        contentMaxAge: 1440,
-                        metadataMaxAge: 1440
+                        contentMaxAge: 1440.0,
+                        metadataMaxAge: 1440.0
                 ],
                 dockerProxy: [
                         indexType: parsed_args.index_type,
@@ -37,9 +39,13 @@ configuration.with{
                         strictContentTypeValidation: Boolean.valueOf(parsed_args.strict_content_validation)
                 ],
                 cleanup: [
-                        policyName: new HashSet<String>([parsed_args.clean_policy]) 
+                        policyName: new HashSet<String>([parsed_args.clean_policy])
                 ]
         ]
+}
+
+if (parsed_args.routing_rule) {
+    configuration.routingRuleId = routingRuleStore.getByName(parsed_args.routing_rule)?.id()
 }
 
 def existingRepository = repositoryManager.get(parsed_args.name)

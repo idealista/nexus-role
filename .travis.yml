@@ -1,9 +1,7 @@
 ---
-dist: bionic
+dist: focal
 language: python
 python: "3.9"
-sudo: required
-group: deprecated-2017Q4
 
 services:
   - docker

@@ -79,6 +79,14 @@ nexus_scheduled_tasks:
     taskProperties:
       blobstoreName: blob-mvn
 
+nexus_routing_rules:
+  - name: block-snapshots
+    description: Block snapshot artifacts from reaching upstream
+    mode: BLOCK
+    matchers:
+      - ^/.*-SNAPSHOT.*
+      - ^/.*\.snapshot/.*
+
 nexus_cleanup_policies:
   - name: test
     format: maven2
@@ -100,6 +108,7 @@ nexus_repositories_maven:
       remote_url: https://repo1.maven.org/maven2/
       layout_policy: permissive
       clean_policy: test2
+      routing_rule: block-snapshots
     - name: maven-jboss
       remote_url: https://repository.jboss.org/nexus/content/groups/public-jboss/
       clean_policy: test2
