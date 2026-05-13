@@ -19,8 +19,8 @@ configuration.with{
                 ],
                 proxy: [
                         remoteUrl: parsed_args.proxy_url,
-                        contentMaxAge: 1440.0,
-                        metadataMaxAge: 1440.0
+                        contentMaxAge: parsed_args.content_max_age.toDouble(),
+                        metadataMaxAge: parsed_args.metadata_max_age.toDouble()
                 ],
                 dockerProxy: [
                         indexType: parsed_args.index_type,
