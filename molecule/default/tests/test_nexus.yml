@@ -117,6 +117,24 @@ http:
     password: "{{ nexus_admin_password }}"
 {% endfor %}
 
+  #Routing rules - verify rule exists
+{% for rule in nexus_routing_rules %}
+  http://localhost:{{ nexus_port }}/service/rest/v1/routing-rules/{{ rule.name }}:
+    status: 200
+    body:
+    - "{{ rule.name }}"
+    - "{{ rule.mode }}"
+    username: admin
+    password: "{{ nexus_admin_password }}"
+{% endfor %}
+  #Routing rules - verify association with maven-central repository
+  http://localhost:{{ nexus_port }}/service/rest/v1/repositories/maven/proxy/maven-central:
+    status: 200
+    body:
+    - "block-snapshots"
+    username: admin
+    password: "{{ nexus_admin_password }}"
+
   #Repositories
   http://localhost:{{ nexus_port }}/service/rest/v1/repositories:
     status: 200
